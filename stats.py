@@ -76,6 +76,9 @@ def trace_droite(a, b):
     canvas.create_line(x0, y0, x1, y1, fill="green")
 
 
+
+
+
 def moyenne(serie):
     somme = 0
     for elt in serie:
