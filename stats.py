@@ -121,12 +121,13 @@ def forteCorrelation(serieX, serieY):
         return False   
 
 def droite_reg(serieX, serieY):
-    
-
+    a = covariance(serieX,serieY)/variance(serieX)
+    b= moyenne(serieY) - a * moyenne(serieX)
+    pass
 
 
 # Constantes et Variables globale
-width, height = 600, 600
+width , height = 600, 600
 heights = 595
 
 # Création de la fenêtre
