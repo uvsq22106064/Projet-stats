@@ -1,7 +1,8 @@
 # Importation des modules
+from operator import truediv
 from random import uniform
 import tkinter as tk
-
+from math import sqrt
 
 def creer_fichier_alea(nb, nomfichier):
     """
@@ -19,7 +20,7 @@ def creer_fichier_alea(nb, nomfichier):
 
     file.close()
 
-creer_fichier_alea(3, "Fichier_alea")
+creer_fichier_alea(45, "Fichier_alea")
 
 def lit_fichier(nomfic):
     """
@@ -66,28 +67,64 @@ def trace_droite(a, b):
     Tracer une droitye entre l'ordonée à l'origine et
     le coefficient directeur
     """
+    global height, width
+    fonction_lineaire = a * width + b
+    x0 = 0
+    y0 = height - b
+    x1 = width       # longueur max de la droite
+    y1 = height - fonction_lineaire
+    canvas.create_line(x0, y0, x1, y1, fill="green")
+
 
 def moyenne(serie):
-    """
-    Fonction qui prend en paramètre une liste de réels représentants
-    une qérie statistique.
-    Fonction retourne la moyenne des réels.
-    """
     somme = 0
     for elt in serie:
         somme += elt
     moyenne = somme / len(serie)
-    return moyenne
+    return serie
 
 def variance(serie):
-    """
-    Fonction qui prend en paramètre une liste de réels représentants
-    une qérie statistique.
-    Retourne la variance de la série
-    """
+    moyenne_serie = moyenne(serie)
+    somme = 0
+    for elt in serie:
+        somme += (elt - moyenne_serie)**2
+    variance_serie = somme / len(serie)
+    return variance_serie
+
+def covariance(serieX, serieY):
+    moyenne_serieX = moyenne(serieX) 
+    moyenne_serieY = moyenne(serieY)
+    produit = 0
+    for i in range(len(serieX)):
+        produit += (serieX[i] - moyenne_serieX)*((serieY[i] - moyenne_serieY))
+    covariance_series = produit / len(serieX)
+    return covariance_series
+
+def correlation(serieX, serieY):
+    coefficient_correlation_lineaire = 0
+    variance_serieX = variance(serieX) 
+    variance_serieY = variance(serieY)
+    covariance_series = covariance(serieX, serieY)
+    correlation_series = covariance_series // (sqrt(variance_serieX * variance_serieY))
+    return correlation_series
+
+def forteCorrelation(serieX, serieY):
+    
+    corr = correlation(serieX, serieY)
+
+    if corr > 0.8 :
+        return True
+    if corr < -0.8:
+        return False   
+
+def droite_reg(serieX, serieY):
+    
+
+
 
 # Constantes et Variables globale
 width, height = 600, 600
+heights = 595
 
 # Création de la fenêtre
 ecran = tk.Tk()
@@ -95,10 +132,11 @@ ecran = tk.Tk()
 canvas = tk.Canvas(ecran, bg="black", width=width, height=height)
 canvas.grid()
 tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_alea"))).grid()
-#tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(a, b)).grid()
+tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
+
 
 # Création des axes du graphique
-canvas.create_line(5, height-5, 5, 10, fill="blue")
-canvas.create_line(5, height-5, width-10, height-5, fill="blue")
+canvas.create_line(5, heights, 5, 10, fill="blue")
+canvas.create_line(5, heights, width-10, heights, fill="blue")
 
 ecran.mainloop()
