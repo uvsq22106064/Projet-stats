@@ -115,15 +115,15 @@ def forteCorrelation(serieX, serieY):
     
     corr = correlation(serieX, serieY)
 
-    if corr > 0.8 :
+    if 1 > corr > 0.8 or -1 < corr < -0.8:
         return True
-    if corr < -0.8:
-        return False   
+    else :
+        return False 
 
 def droite_reg(serieX, serieY):
     a = covariance(serieX,serieY)/variance(serieX)
     b= moyenne(serieY) - a * moyenne(serieX)
-    pass
+    return (a,b)
 
 
 # Constantes et Variables globale
@@ -137,6 +137,8 @@ canvas = tk.Canvas(ecran, bg="black", width=width, height=height)
 canvas.grid()
 tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_alea"))).grid()
 tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
+tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
+
 
 
 # Création des axes du graphique
