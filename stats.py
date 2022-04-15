@@ -19,7 +19,7 @@ def creer_fichier_alea(nb, nomfichier):
 
     file.close()
 
-#creer_fichier_alea(33, "Fichier_alea")
+creer_fichier_alea(33, "Fichier_alea")
 
 def lit_fichier(nomfic):
     """
