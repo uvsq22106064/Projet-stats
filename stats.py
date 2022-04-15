@@ -100,5 +100,5 @@ tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_ale
 # Création des axes du graphique
 canvas.create_line(5, height-5, 5, 10, fill="blue")
 canvas.create_line(5, height-5, width-10, height-5, fill="blue")
-
+a=2
 ecran.mainloop()
