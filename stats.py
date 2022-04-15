@@ -67,6 +67,9 @@ def trace_droite(a, b):
     le coefficient directeur
     """
 
+
+
+
 def moyenne(serie):
     """
     Fonction qui prend en paramètre une liste de réels représentants
