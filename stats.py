@@ -3,6 +3,8 @@ from operator import truediv
 from random import uniform
 import tkinter as tk
 from math import sqrt
+from numpy import True_
+import os as os
 
 def creer_fichier_alea(nb, nomfichier):
     """
@@ -114,17 +116,31 @@ def correlation(serieX, serieY):
 def forteCorrelation(serieX, serieY):
     
     corr = correlation(serieX, serieY)
-
-    if 1 > corr > 0.8 or -1 < corr < -0.8:
-        return True
+    if -0.8 < corr < 0.8:
+        return False
     else :
-        return False 
+        return True
 
 def droite_reg(serieX, serieY):
     a = covariance(serieX,serieY)/variance(serieX)
     b= moyenne(serieY) - a * moyenne(serieX)
     return (a,b)
 
+def closing_window():
+    ecran.destroy()
+    Screen.destroy()
+
+
+def aide():
+    os.system("start https://google.fr")
+aide()
+
+#Créer une fenêtre graphqiue comportant un canevas et trois boutons
+#pour lancer les différentes fonctions
+Screen= tk.Toplevel()
+tk.Button(text="Tracer la droite", command=lambda: trace_droite(droite_reg(lit_fichier("Fichier_alea")[0], lit_fichier("Fichier_alea")[1]))).grid()
+#tk.button(text="Autre couleur", command=lambda: ).grid()
+tk.Button(text="Quitter", command=closing_window).grid()
 
 # Constantes et Variables globale
 width , height = 600, 600
@@ -146,3 +162,4 @@ canvas.create_line(5, heights, 5, 10, fill="blue")
 canvas.create_line(5, heights, width-10, heights, fill="blue")
 
 ecran.mainloop()
+Screen.mainloop()
