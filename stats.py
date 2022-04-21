@@ -1,5 +1,5 @@
 # Importation des modules
-from random import uniform
+from random import uniform, randint
 import tkinter as tk
 from math import sqrt
 import os as os
@@ -136,15 +136,15 @@ def forteCorrelation(serieX, serieY):
         return True
 
 def droite_reg(serieX, serieY):
-    a = covariance(serieX,serieY)/variance(serieX)
-    b= moyenne(serieY) - a * moyenne(serieX)
-    return (a,b)
+    coeff_dir = covariance(serieX,serieY)/variance(serieX)
+    ord_orig = moyenne(serieY) - a * moyenne(serieX)
+    return (coeff_dir, ord_orig)
 
 def closing_window():
     ecran.destroy()
     Screen.destroy()
 
-    return (coeff_dir, ord_orig)
+    
 
 def aide():
     os.system("start https://google.fr")
