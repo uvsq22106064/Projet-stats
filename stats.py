@@ -1,10 +1,8 @@
 # Importation des modules
-from random import uniform, randint
+from random import uniform , randint
 import tkinter as tk
 from math import sqrt
 import os as os
-
-# Definition des fonctions
 
 # Création des fonctions
 # PARTIE 1
@@ -35,8 +33,8 @@ def lit_fichier(nomfic):
 
     for ligne in file:
         a = ligne.split()
-        listeX.append(a[0])
-        listeY.append(a[1])
+        listeX.append(float(a[0]))
+        listeY.append(float(a[1]))
 
     file.close()
     return listeX, listeY
@@ -50,17 +48,23 @@ def trace_Nuage(nomf):
     le nuage de points correspondant.Puis renverra le nombre de points
     dessinés.
     """
-    global height
+    global height, l_y, l_x
     # Création des axes du graphique
     canvas.create_line(5, heights, 5, 10, fill="blue")
     canvas.create_line(5, heights, width-10, heights, fill="blue")
     liste_points = lit_fichier(nomf)
     for i in range(len(liste_points[0])):
         canvas.create_oval(float(liste_points[0][i]) + 5,  height - float(liste_points[1][i]),
-                           float(liste_points[0][i]) + 7, (height - float(liste_points[1][i])) + 2,
+                           float(liste_points[0][i]) + 9, (height - float(liste_points[1][i])) + 4,
                            fill="red")
 
     nbr_points = len(liste_points[0])   # ou de liste_points[1]
+
+    # récupère les deux listes de coordonées
+    l_x = liste_points[0].copy()
+    l_y = liste_points[1].copy()
+    
+
     return nbr_points
 
 
@@ -71,18 +75,22 @@ def trace_droite(a, b):
     Tracer une droitye entre l'ordonée à l'origine et
     le coefficient directeur
     """
-    global height, width, couleur, liste
-    fonction_lineaire = a * width + b
-    x0 = 5
-    y0 = height - b
-    x1 = width       # longueur max de la droite
-    y1 = height - fonction_lineaire
-    ligne = canvas.create_line(x0, y0, x1, y1, fill= couleur, width=2)
-    liste.append(ligne)
+    global height, width, couleur, liste, peut_tracer, l_x, l_y
+    #calcule de la correlation
+    if len(l_x) != 0:
+        peut_tracer = forteCorrelation(l_x, l_y)
+    if peut_tracer == True:
+        fonction_lineaire = a * width + b
+        x0 = 5
+        y0 = height - b
+        x1 = width       # longueur max de la droite
+        y1 = height - fonction_lineaire
+        ligne = canvas.create_line(x0, y0, x1, y1, fill= couleur, width=2)
+        liste.append(ligne)
 
 
 # Série de test partie 1
-creer_fichier_alea(50, "Fichier_alea")
+#creer_fichier_alea(50, "Fichier_alea")
 #print(lit_fichier("Fichier_alea"))
 # Les 2 tests si dessous s'éxécutent vers la fin du programme
 #tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_alea"))).grid()
@@ -136,15 +144,10 @@ def forteCorrelation(serieX, serieY):
         return True
 
 def droite_reg(serieX, serieY):
-    coeff_dir = covariance(serieX,serieY)/variance(serieX)
-    ord_orig = moyenne(serieY) - a * moyenne(serieX)
-    return (coeff_dir, ord_orig)
+    a = covariance(serieX,serieY)/variance(serieX)
+    b= moyenne(serieY) - a * moyenne(serieX)
+    return (a,b)
 
-def closing_window():
-    ecran.destroy()
-    Screen.destroy()
-
-    
 
 def aide():
     os.system("start https://google.fr")
@@ -165,9 +168,7 @@ def aide():
 def changer_couleur():
     global couleur, liste_couleur, couleur, liste
     couleur = liste_couleur[randint(0, len(liste_couleur)-1)]
-    canvas.itemconfig(liste[-1], fill=couleur)
-
-
+    
 # Programme Principale
 
 # Constantes et Variables globale
@@ -177,28 +178,31 @@ liste = []
 liste_couleur = ["green", "blue", "red", "yellow", "orange", "purple", 
 "white", "pink"]
 couleur = liste_couleur[randint(0, len(liste_couleur)-1)]
+peut_tracer = True
+l_x, l_y = [], []
 
 
 # Création de la fenêtre
 ecran = tk.Tk()
 
 canvas = tk.Canvas(ecran, bg="black", width=width, height=height)
-canvas.grid()
-tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_alea"))).grid()
-tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
-tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
+canvas.grid(row=0 ,column=0, columnspan=3)
+tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_alea"))).grid(row=1 ,column=0)
+tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(randint(0,3),randint(0,100)))).grid(row=1 ,column=1)
+tk.Button(ecran, text="Quitter", command=ecran.quit).grid(row=1 ,column=2)
+tk.Button(ecran, text="Autre couleur", command=changer_couleur).grid(row=2 ,column=2)
+
 
 #Créer une fenêtre graphqiue comportant un canevas et trois boutons
 #pour lancer les différentes fonctions
-Screen= tk.Toplevel()
-tk.Button(text="Tracer la droite", command=lambda: trace_droite(droite_reg(lit_fichier("Fichier_alea")[0], lit_fichier("Fichier_alea")[1]))).grid()
-#tk.button(text="Autre couleur", command=lambda: ).grid()
-tk.Button(text="Quitter", command=closing_window).grid()
+#Screen= tk.Toplevel()
+#tk.Button(text="Tracer la droite", command=lambda: trace_droite(droite_reg(lit_fichier("Fichier_alea")[0], lit_fichier("Fichier_alea")[1]))).grid()
+##tk.button(text="Autre couleur", command=lambda: ).grid()
+#tk.Button(text="Quitter", command=closing_window).grid()
 
 
 # Création des axes du graphique
 canvas.create_line(5, heights, 5, 10, fill="blue")
 canvas.create_line(5, heights, width-10, heights, fill="blue")
-
 ecran.mainloop()
-Screen.mainloop()
+#Screen.mainloop()
