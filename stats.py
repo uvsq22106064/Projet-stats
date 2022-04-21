@@ -1,10 +1,10 @@
 # Importation des modules
-from http.cookies import CookieError
-from operator import truediv
 from random import randint, uniform
 import tkinter as tk
 from math import sqrt
 
+# Création des fonctions
+# PARTIE 1
 def creer_fichier_alea(nb, nomfichier):
     """
     Fonction qui prend un nb en entier et un nomfichier en string.
@@ -18,10 +18,8 @@ def creer_fichier_alea(nb, nomfichier):
     while i != nb:
         file.write(f"{uniform(0, 500)} {uniform(0, 500)}\n")
         i += 1
-
     file.close()
 
-creer_fichier_alea(50, "Fichier_alea")
 
 def lit_fichier(nomfic):
     """
@@ -40,72 +38,6 @@ def lit_fichier(nomfic):
     file.close()
     return listeX, listeY
 
-#print(lit_fichier("Fichier_alea"))
-
-
-
-def moyenne(serie):
-    somme = 0
-    for elt in serie:
-        somme += elt
-    moyenne = somme / len(serie)
-    return moyenne
-
-#print(moyenne([4, 6, 5, 6, 8, 4, 6, 5, 10, 5]))
-#print(moyenne([7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-
-
-def variance(serie):
-    moyenne_serie = moyenne(serie)
-    somme = 0
-    for elt in serie:
-        somme += (elt - moyenne_serie)**2
-    variance_serie = somme / len(serie)
-    return variance_serie
-
-#print(variance([7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-
-def covariance(serieX, serieY):
-    moyenne_serieX = moyenne(serieX) 
-    moyenne_serieY = moyenne(serieY)
-    produit = 0
-    for i in range(len(serieX)):
-        produit += (serieX[i] - moyenne_serieX)*((serieY[i] - moyenne_serieY))
-    covariance_series = produit / len(serieX)
-    return covariance_series
-
-#print(covariance([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-
-def correlation(serieX, serieY):
-    coefficient_correlation_lineaire = 0
-    variance_serieX = variance(serieX) 
-    variance_serieY = variance(serieY)
-    covariance_series = covariance(serieX, serieY)
-    correlation_series = covariance_series / (sqrt(variance_serieX * variance_serieY))
-    return correlation_series
-
-#print(correlation([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-
-def forteCorrelation(serieX, serieY):
-    
-    corr = correlation(serieX, serieY)
-    if 1 > corr > 0.8 :
-        return True
-    elif -1 < corr < -0.8:
-        return True
-    else:
-        return False
-
-#print(forteCorrelation([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-
-def droite_reg(serieX, serieY):
-    coeff_dir = covariance(serieX, serieY)
-    ord_orig = moyenne(serieY) - coeff_dir * moyenne(serieX)
-
-    return (coeff_dir, ord_orig)
-
-#print(droite_reg([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-
 
 def trace_Nuage(nomf):
     """
@@ -121,7 +53,7 @@ def trace_Nuage(nomf):
     canvas.create_line(5, heights, width-10, heights, fill="blue")
     liste_points = lit_fichier(nomf)
     for i in range(len(liste_points[0])):
-        canvas.create_oval(float(liste_points[0][i]) + 5,     height - float(liste_points[1][i]),
+        canvas.create_oval(float(liste_points[0][i]) + 5,  height - float(liste_points[1][i]),
                            float(liste_points[0][i]) + 7, (height - float(liste_points[1][i])) + 2,
                            fill="red")
 
@@ -145,13 +77,91 @@ def trace_droite(a, b):
     ligne = canvas.create_line(x0, y0, x1, y1, fill= couleur, width=2)
     liste.append(ligne)
 
+
+# Série de test partie 1
+creer_fichier_alea(50, "Fichier_alea")
+#print(lit_fichier("Fichier_alea"))
+# Les 2 tests si dessous s'éxécutent vers la fin du programme
+#tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_alea"))).grid()
+#tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
+
+
+# PARTIE 2
+
+def moyenne(serie):
+    somme = 0
+    for elt in serie:
+        somme += elt
+    moyenne = somme / len(serie)
+    return moyenne
+
+
+def variance(serie):
+    moyenne_serie = moyenne(serie)
+    somme = 0
+    for elt in serie:
+        somme += (elt - moyenne_serie)**2
+    variance_serie = somme / len(serie)
+    return variance_serie
+
+
+def covariance(serieX, serieY):
+    moyenne_serieX = moyenne(serieX) 
+    moyenne_serieY = moyenne(serieY)
+    produit = 0
+    for i in range(len(serieX)):
+        produit += (serieX[i] - moyenne_serieX)*((serieY[i] - moyenne_serieY))
+    covariance_series = produit / len(serieX)
+    return covariance_series
+
+
+def correlation(serieX, serieY):
+    coefficient_correlation_lineaire = 0
+    variance_serieX = variance(serieX) 
+    variance_serieY = variance(serieY)
+    covariance_series = covariance(serieX, serieY)
+    correlation_series = covariance_series / (sqrt(variance_serieX * variance_serieY))
+    return correlation_series
+
+
+def forteCorrelation(serieX, serieY):
+    
+    corr = correlation(serieX, serieY)
+    if 1 > corr > 0.8 :
+        return True
+    elif -1 < corr < -0.8:
+        return True
+    else:
+        return False
+
+
+def droite_reg(serieX, serieY):
+    
+    coeff_dir = covariance(serieX, serieY)
+    ord_orig = moyenne(serieY) - coeff_dir * moyenne(serieX)
+
+    return (coeff_dir, ord_orig)
+
+
+# Série de test partie 2
+#print(moyenne([4, 6, 5, 6, 8, 4, 6, 5, 10, 5]))
+#print(moyenne([7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+#print(variance([7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+#print(covariance([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+#print(correlation([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+#print(forteCorrelation([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+#print(droite_reg([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+
+
+# PARTIE 3
+
 def changer_couleur():
     global couleur, liste_couleur, couleur, liste
     couleur = liste_couleur[randint(0, len(liste_couleur)-1)]
     canvas.itemconfig(liste[-1], fill=couleur)
- 
 
 
+# Programme Principale
 
 # Constantes et Variables globale
 width, height = 600, 600
@@ -160,8 +170,6 @@ liste = []
 liste_couleur = ["green", "blue", "red", "yellow", "orange", "purple", 
 "white", "pink"]
 couleur = liste_couleur[randint(0, len(liste_couleur)-1)]
-
-
 
 
 # Création de la fenêtre
@@ -173,7 +181,5 @@ tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_ale
 tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
 tk.Button(ecran, text="Autre_couleur", command=changer_couleur).grid()
 tk.Button(ecran, text="Quitter", command=ecran.quit).grid()
-
-
 
 ecran.mainloop()
