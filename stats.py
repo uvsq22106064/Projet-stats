@@ -1,10 +1,11 @@
 # Importation des modules
-from operator import truediv
 from random import uniform
 import tkinter as tk
 from math import sqrt
 from numpy import True_
 import os as os
+
+# Definition des fonctions
 
 def creer_fichier_alea(nb, nomfichier):
     """
@@ -41,7 +42,6 @@ def lit_fichier(nomfic):
     file.close()
     return listeX, listeY
 
-#print(lit_fichier("Fichier_alea"))
 
 def trace_Nuage(nomf):
     """
@@ -133,14 +133,7 @@ def closing_window():
 
 def aide():
     os.system("start https://google.fr")
-aide()
 
-#Créer une fenêtre graphqiue comportant un canevas et trois boutons
-#pour lancer les différentes fonctions
-Screen= tk.Toplevel()
-tk.Button(text="Tracer la droite", command=lambda: trace_droite(droite_reg(lit_fichier("Fichier_alea")[0], lit_fichier("Fichier_alea")[1]))).grid()
-#tk.button(text="Autre couleur", command=lambda: ).grid()
-tk.Button(text="Quitter", command=closing_window).grid()
 
 # Constantes et Variables globale
 width , height = 600, 600
@@ -155,6 +148,12 @@ tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_ale
 tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
 tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
 
+#Créer une fenêtre graphqiue comportant un canevas et trois boutons
+#pour lancer les différentes fonctions
+Screen= tk.Toplevel()
+tk.Button(text="Tracer la droite", command=lambda: trace_droite(droite_reg(lit_fichier("Fichier_alea")[0], lit_fichier("Fichier_alea")[1]))).grid()
+#tk.button(text="Autre couleur", command=lambda: ).grid()
+tk.Button(text="Quitter", command=closing_window).grid()
 
 
 # Création des axes du graphique
