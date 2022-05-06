@@ -3,15 +3,13 @@ from random import uniform , randint
 import tkinter as tk
 from math import sqrt
 import os as os
-#import pandas
-
+from tkinter.filedialog import askopenfilename
 # Création des fonctions
 # PARTIE 1
-
 def creer_fichier_alea(nb, nomfichier):
     """
     Fonction qui prend un nb en entier et un nomfichier en string.
-    Fonction quiva créer un fichier texte avec commme nom
+    Fonction qui va créer un fichier texte avec commme nom
     l'argument nomfichier, avec nbr de lignes correspondant a
     l'argument nb.
     Chaque ligne contiendra deux nbrs aleatoires flottants
@@ -50,26 +48,22 @@ def trace_Nuage(nomf):
     le nuage de points correspondant.Puis renverra le nombre de points
     dessinés.
     """
-    global height, liste_y, liste_x
-    canvas.delete("all")
-    creer_fichier_alea(50, "Fichier_alea")
+    global height, l_y, l_x
     # Création des axes du graphique
     canvas.create_line(5, heights, 5, 10, fill="blue")
     canvas.create_line(5, heights, width-10, heights, fill="blue")
     liste_points = lit_fichier(nomf)
     for i in range(len(liste_points[0])):
-        canvas.create_oval(float(liste_points[0][i]) + 5,  (height-5) - float(liste_points[1][i]),
-                           float(liste_points[0][i]) + 9, ((height- 5) - float(liste_points[1][i])) + 4,
+        canvas.create_oval(float(liste_points[0][i]) + 5,  height - float(liste_points[1][i]),
+                           float(liste_points[0][i]) + 9, (height - float(liste_points[1][i])) + 4,
                            fill="red")
 
     nbr_points = len(liste_points[0])   # ou de liste_points[1]
 
     # récupère les deux listes de coordonées
-    liste_x = liste_points[0].copy()
-    liste_y = liste_points[1].copy()
-    a = covariance(liste_x, liste_y) / variance(liste_x)
-    b = moyenne(liste_y) - (a * moyenne(liste_x))
-    trace_droite(a, b)
+    l_x = liste_points[0].copy()
+    l_y = liste_points[1].copy()
+    
 
     return nbr_points
 
@@ -81,21 +75,16 @@ def trace_droite(a, b):
     Tracer une droitye entre l'ordonée à l'origine et
     le coefficient directeur
     """
-    global height, width, couleur, liste, peut_tracer, liste_x, liste_y
+    global height, width, couleur, liste, peut_tracer, l_x, l_y
     #calcule de la correlation
-    print(a, b)
-    print(liste_x)
-    if len(liste_x) != 0:
-        print("ici")
-        peut_tracer = forteCorrelation(liste_x, liste_y)
-    
-        
+    if len(l_x) != 0:
+        peut_tracer = forteCorrelation(l_x, l_y)
     if peut_tracer == True:
         fonction_lineaire = a * width + b
         x0 = 5
-        y0 = b
+        y0 = height - b
         x1 = width       # longueur max de la droite
-        y1 = fonction_lineaire
+        y1 = height - fonction_lineaire
         ligne = canvas.create_line(x0, y0, x1, y1, fill= couleur, width=2)
         liste.append(ligne)
 
@@ -111,6 +100,7 @@ def trace_droite(a, b):
 # PARTIE 2
 
 def moyenne(serie):
+    """Fonction qui renvoi la moyenne d'une série"""
     somme = 0
     for elt in serie:
         somme += elt
@@ -119,6 +109,7 @@ def moyenne(serie):
 
 
 def variance(serie):
+    """Fonction qui renvoi la variance d'une série"""
     moyenne_serie = moyenne(serie)
     somme = 0
     for elt in serie:
@@ -128,6 +119,7 @@ def variance(serie):
 
 
 def covariance(serieX, serieY):
+    """Fonction qui renvoi la covariance entre deux séries"""
     moyenne_serieX = moyenne(serieX) 
     moyenne_serieY = moyenne(serieY)
     produit = 0
@@ -138,6 +130,8 @@ def covariance(serieX, serieY):
 
 
 def correlation(serieX, serieY):
+    """Fonction qui renvoi la correlation entre deux séries"""
+    coefficient_correlation_lineaire = 0
     variance_serieX = variance(serieX) 
     variance_serieY = variance(serieY)
     covariance_series = covariance(serieX, serieY)
@@ -146,21 +140,31 @@ def correlation(serieX, serieY):
 
 
 def forteCorrelation(serieX, serieY):
-    
+    """Fonction qui prend deux listes de nombres flottants en argument
+    et verifie si il y a une forte correlation entre les deux listes
+    elle renvoie donc un booléen"""
     corr = correlation(serieX, serieY)
-    if corr < 0.8 and corr > -0.8:
-        return True
-    else :
+    if -0.8 < corr < 0.8:
         return False
- 
+    else :
+        return True
+
 def droite_reg(serieX, serieY):
-    a = covariance(serieX,serieY)/variance(serieX)
-    b= moyenne(serieY) - a * moyenne(serieX)
+    """Fonction qui Trace a partir des les listes de Position x et y, la droite de regression"""
+    a = covariance(serieX,serieY)/variance(serieX) # coefficient directeur
+    b= moyenne(serieY) - a * moyenne(serieX) # ordonée à l'origine
     return (a,b)
 
 
 def aide():
+    """Fonction qui renvoi vers le README de Github"""
     os.system("start https://google.fr")
+
+def charger():
+    """Charge une configuration choisit par l'utilisateur."""
+    global filename
+    filename = askopenfilename(title="Charger une configuration", filetypes=[
+                               ("Fichier .txt", ".txt")])
 
 
 # Série de test partie 2
@@ -178,60 +182,7 @@ def aide():
 def changer_couleur():
     global couleur, liste_couleur, couleur, liste
     couleur = liste_couleur[randint(0, len(liste_couleur)-1)]
-
-def desactiver():
-    """
-    Va retirer la fonctionalité d'ajouter des points manuellements.
-    """
-    global dessin
-    dessin = False
-
-def activer():
-    """ 
-    Va activer la fonctionalité d'ajouter des points manuellements.
-    """
-    global dessin
-    dessin = True
-
-def ajout_point(event):
-    """ 
-    Ajoute des points dès que l'on clique.
-    """
-    global liste_x, liste_y, dessin, liste
-    if dessin == True:
-        canvas.create_oval(event.x ,  event.y,
-                           event.x + 4,  event.y + 4,
-                           fill="red")
-        liste_x.append(event.x)
-        liste_y.append(event.y)
-        print(liste_x)
-        if len(liste_x) > 2:
-            print(liste)
-            if len(liste) != 0:
-                canvas.delete(liste[-1])
-        j = droite_reg(liste_x,liste_y)
-        trace_droite(j[0], j[1])        
-
-        
-def extraire_info_fichier():
-    global liste_x, liste_y
-    n = int(input("Choississez le nombre de points que vous voulez: "))
-    info_villes = pandas.read_csv("villes_virgule.csv")
-    info_x = info_villes.loc[(info_villes["nb_hab_2010"] <= 500) , "nb_hab_2010"]
-    info_y = info_villes.loc[(info_villes["nb_hab_2012"] <= 500) , "nb_hab_2012"]
-    liste_x.append(info_x)
-    liste_y.append(info_y)
-    print(liste_x, liste_y)
-    for i in range(len(liste_x)):
-        canvas.create_oval(liste_x[i] ,  liste_y[i],
-                            liste_x[i] + 4,  liste_y[i] + 4,
-                            fill="red")
-
-    j = droite_reg(liste_x,liste_y)
-    trace_droite(j[0], j[1])        
-
-
-
+    
 # Programme Principale
 
 # Constantes et Variables globale
@@ -242,27 +193,30 @@ liste_couleur = ["green", "blue", "red", "yellow", "orange", "purple",
 "white", "pink"]
 couleur = liste_couleur[randint(0, len(liste_couleur)-1)]
 peut_tracer = True
-liste_x, liste_y = [], []
-dessin = False
+l_x, l_y = [], []
+
 
 # Création de la fenêtre
 ecran = tk.Tk()
 
 canvas = tk.Canvas(ecran, bg="black", width=width, height=height)
 canvas.grid(row=0 ,column=0, columnspan=3)
-
-
 tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_alea"))).grid(row=1 ,column=0)
 tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(randint(0,3),randint(0,100)))).grid(row=1 ,column=1)
 tk.Button(ecran, text="Quitter", command=ecran.quit).grid(row=1 ,column=2)
 tk.Button(ecran, text="Autre couleur", command=changer_couleur).grid(row=2 ,column=2)
-tk.Button(ecran, text="fichier_csv", command=extraire_info_fichier).grid(row=2 ,column=3)
 
-# ajout des boutons pour activer et désaactiver la partie dessin
-tk.Button(ecran, text="Activer", command=activer).grid(row=0, column=4)
-tk.Button(ecran, text="Désactiver", command=desactiver).grid(row=1, column=4)
 
-canvas.bind("<Button>", ajout_point)
+#Créer une fenêtre graphqiue comportant un canevas et trois boutons
+#pour lancer les différentes fonctions
+#Screen= tk.Toplevel()
+#tk.Button(text="Tracer la droite", command=lambda: trace_droite(droite_reg(lit_fichier("Fichier_alea")[0], lit_fichier("Fichier_alea")[1]))).grid()
+##tk.button(text="Autre couleur", command=lambda: ).grid()
+#tk.Button(text="Quitter", command=closing_window).grid()
 
+
+# Création des axes du graphique
+canvas.create_line(5, heights, 5, 10, fill="blue")
+canvas.create_line(5, heights, width-10, heights, fill="blue")
 ecran.mainloop()
-
+#Screen.mainloop()
