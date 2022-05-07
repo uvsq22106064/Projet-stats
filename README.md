@@ -54,7 +54,38 @@ Partie 1:
                                                 Partie "Outils"
 
 # explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
-# remplir dans le srcipt les docstring
+Pour la partie de caluls de statistique il est nécessaire d'avoir ces 4 outils definit :
+
+"moyenne(serie)"
+
+C'est une fonction qui prends en entrée une liste et calculs la moyenne des flottant qu'elle contient.
+
+Cette fonction renvoie donc un flottant.
+
+"variance(serie)"
+
+C'est une fonction qui prends en entrée une liste et en calculs la variance a l'aide de l'outils moyenne() en suivant cette équation:
+
+![image](https://user-images.githubusercontent.com/91246964/167264923-efe9ffa2-a3d9-4e29-8adb-8a803fbd8adb.png)
+
+Cette fonction renvoie donc un flottant.
+
+"covariance(serieX, serieY)"
+Prends en entrée deux listes (ici correspondant aux coordonnée x et y) pour a l'aide de l'outils variance() en calculer la covariance en suivant cette équation:
+
+![image](https://user-images.githubusercontent.com/91246964/167264980-cf1b1d43-48ed-4fcd-8e1e-dfa89e438426.png)
+
+Cette fonction renvoie donc un flottant.
+
+
+"correlation(serieX, serieY)"
+
+Fonction qui prends en entrée deux listes pour en calculer le coefficient de correlation en suivant cette équation:
+
+![image](https://user-images.githubusercontent.com/91246964/167265085-dbb71a89-6e78-40cd-bdde-f6e21215bde4.png)
+
+Cette fonction renvoie donc un flottant.
+
 # bien parler du fichier qu on va créer
 Explication des tests:
 
@@ -63,6 +94,8 @@ Explication des tests:
                                                 Partie " Calculs Statistiques"
 
 # explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
+
+
 # remplir dans le srcipt les docstring
 Explication des tests:
 
