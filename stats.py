@@ -5,7 +5,9 @@ from math import sqrt
 import os as os
 from tkinter.filedialog import askopenfilename
 # Création des fonctions
+
 # PARTIE 1
+
 def creer_fichier_alea(nb, nomfichier):
     """
     Fonction qui prend un nb en entier et un nomfichier en string.
@@ -20,6 +22,9 @@ def creer_fichier_alea(nb, nomfichier):
         file.write(f"{uniform(0, 500)} {uniform(0, 500)}\n")
         i += 1
     file.close()
+
+
+
 
 
 def lit_fichier(nomfic):
@@ -38,6 +43,9 @@ def lit_fichier(nomfic):
 
     file.close()
     return listeX, listeY
+
+
+
 
 
 def trace_Nuage(nomf):
@@ -66,6 +74,9 @@ def trace_Nuage(nomf):
     
 
     return nbr_points
+
+
+
 
 
 def trace_droite(a, b):
@@ -108,6 +119,9 @@ def moyenne(serie):
     return moyenne
 
 
+
+
+
 def variance(serie):
     """Fonction qui renvoi la variance d'une série"""
     moyenne_serie = moyenne(serie)
@@ -116,6 +130,9 @@ def variance(serie):
         somme += (elt - moyenne_serie)**2
     variance_serie = somme / len(serie)
     return variance_serie
+
+
+
 
 
 def covariance(serieX, serieY):
@@ -129,14 +146,20 @@ def covariance(serieX, serieY):
     return covariance_series
 
 
+
+
+
 def correlation(serieX, serieY):
     """Fonction qui renvoi la correlation entre deux séries"""
     coefficient_correlation_lineaire = 0
     variance_serieX = variance(serieX) 
     variance_serieY = variance(serieY)
     covariance_series = covariance(serieX, serieY)
-    correlation_series = covariance_series / (sqrt(variance_serieX * variance_serieY))
+    correlation_series = covariance_series / (sqrt(variance_serieX * variance_serieY)) 
     return correlation_series
+
+
+
 
 
 def forteCorrelation(serieX, serieY):
@@ -149,6 +172,10 @@ def forteCorrelation(serieX, serieY):
     else :
         return True
 
+
+
+
+
 def droite_reg(serieX, serieY):
     """Fonction qui Trace a partir des les listes de Position x et y, la droite de regression"""
     a = covariance(serieX,serieY)/variance(serieX) # coefficient directeur
@@ -156,9 +183,16 @@ def droite_reg(serieX, serieY):
     return (a,b)
 
 
+
+
+
 def aide():
     """Fonction qui renvoi vers le README de Github"""
-    os.system("start https://google.fr")
+    os.system("start https://github.com/uvsq22106064/Projet-stats#readme")
+
+
+
+
 
 def charger():
     """Charge une configuration choisit par l'utilisateur."""
