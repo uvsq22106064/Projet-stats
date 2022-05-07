@@ -10,7 +10,7 @@ from tkinter.filedialog import askopenfilename
 
 def creer_fichier_alea(nb, nomfichier):
     """
-    Fonction qui prend un nb en entier et un nomfichier en string.
+    Fonction qui prend un nb entier et un nomfichier en string.
     Fonction qui va créer un fichier texte avec commme nom
     l'argument nomfichier, avec nbr de lignes correspondant a
     l'argument nb.
@@ -53,7 +53,7 @@ def trace_Nuage(nomf):
     Fonction qui prend en argument le nom d'un fichier en string.
     Fichier qui contient les coordonées des points d'un nuage.
     Fonction va appeler la fonction lit_fichier puis va représenter
-    le nuage de points correspondant.Puis renverra le nombre de points
+    le nuage de points correspondant, puis renverra le nombre de points
     dessinés.
     """
     global height, l_y, l_x
@@ -81,10 +81,10 @@ def trace_Nuage(nomf):
 
 def trace_droite(a, b):
     """
-    Fonction qui prend duex flottants en arguments
-    a = coefficient directeur et b =l'ordonée à l'origine.
-    Tracer une droitye entre l'ordonée à l'origine et
-    le coefficient directeur
+    Fonction qui prend deux flottants en arguments
+    a = coefficient directeur et b = l'ordonée à l'origine.
+    Tracer une droite entre l'ordonée à l'origine et
+    le coefficient directeur.
     """
     global height, width, couleur, liste, peut_tracer, l_x, l_y
     #calcule de la correlation
@@ -174,7 +174,7 @@ def forteCorrelation(serieX, serieY):
 
 
 def droite_reg(serieX, serieY):
-    """Fonction qui Trace a partir des les listes de Position x et y, la droite de regression"""
+    """Fonction qui Trace a partir des listes de Position x et y, la droite de regression"""
     a = covariance(serieX,serieY)/variance(serieX) # coefficient directeur
     b= moyenne(serieY) - a * moyenne(serieX) # ordonée à l'origine
     return (a,b)
@@ -243,7 +243,7 @@ tk.Button(ecran, text="Autre couleur", command=changer_couleur).grid(row=2 ,colu
 #pour lancer les différentes fonctions
 #Screen= tk.Toplevel()
 #tk.Button(text="Tracer la droite", command=lambda: trace_droite(droite_reg(lit_fichier("Fichier_alea")[0], lit_fichier("Fichier_alea")[1]))).grid()
-##tk.button(text="Autre couleur", command=lambda: ).grid()
+#tk.button(text="Autre couleur", command=lambda: ).grid()
 #tk.Button(text="Quitter", command=closing_window).grid()
 
 
