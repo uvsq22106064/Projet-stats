@@ -100,7 +100,10 @@ Afin de savoir si il est pertinent de tracer une droite de regression il faut qu
 
 la fonction "forteCorrelation(serieX, serieY)" verifie cela.
 
-La fonction droite_regression(serieX, serieY) elle permet grace aux outils covariance() et moyenne() de renvoiyer deux flottant correspondant au coefficient directeur (a) et l'ordonnée a l'origine (b) de la droite de regression qui est de forme ax+b 
+La fonction droite_regression(serieX, serieY) elle permet grace aux outils covariance() et moyenne() de renvoiyer deux flottant correspondant au coefficient directeur (a) et l'ordonnée a l'origine (b) de la droite de regression qui est de forme y = ax+b 
+
+![image](https://user-images.githubusercontent.com/91246964/167265454-30f8ecc7-2f73-4df8-b7b5-cc0fd306ba31.png)
+
 
 La fonction aide renvoie vers ce Readme
 
