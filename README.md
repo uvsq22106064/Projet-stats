@@ -80,7 +80,7 @@ Cette fonction renvoie donc un flottant.
 
 "correlation(serieX, serieY)"
 
-Fonction qui prends en entrée deux listes pour en calculer le coefficient de correlation en suivant cette équation:
+Fonction qui prends en entrée deux listes pour en calculer, a l'aide de l'outils "variance()" le coefficient de correlation en suivant cette équation:
 
 ![image](https://user-images.githubusercontent.com/91246964/167265085-dbb71a89-6e78-40cd-bdde-f6e21215bde4.png)
 
@@ -94,6 +94,16 @@ Explication des tests:
                                                 Partie " Calculs Statistiques"
 
 # explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
+Voiçi les fonction utiliser pour la partie calculs en statistique:
+
+Afin de savoir si il est pertinent de tracer une droite de regression il faut que le coefficient de correlation sois compris en dehors de -0.8 et 0.8
+
+la fonction "forteCorrelation(serieX, serieY)" verifie cela.
+
+La fonction droite_regression(serieX, serieY) elle permet grace aux outils covariance() et moyenne() de renvoiyer deux flottant correspondant au coefficient directeur (a) et l'ordonnée a l'origine (b) de la droite de regression qui est de forme ax+b 
+
+La fonction aide renvoie vers ce Readme
+
 
 
 # remplir dans le srcipt les docstring
