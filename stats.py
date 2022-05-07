@@ -211,6 +211,7 @@ def charger():
 # PARTIE 3
 
 def changer_couleur():
+    """Fonction qui change la couleur"""
     global couleur, liste_couleur, couleur, liste
     couleur = liste_couleur[randint(0, len(liste_couleur)-1)]
     
