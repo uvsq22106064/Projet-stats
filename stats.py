@@ -112,12 +112,7 @@ def trace_droite(a, b):
 
 def moyenne(serie):
     """Fonction qui renvoi la moyenne d'une série"""
-    somme = 0
-    for elt in serie:
-        somme += elt
-    #somme = sum(serie) ??? pourquoi on a pas juste fais ça
-    
-    moyenne = somme / len(serie)
+    moyenne = sum(serie)/ len(serie)
     return moyenne
 
 
