@@ -176,8 +176,8 @@ Explication des fonctions:
     1) Fonction trace_droite expliqué dans la partie "Outil"
     
     2) Fonction changer_couleur() : Appelle deux variables globales couleur qui va récupérer la couleur choisi. Et liste couleur qui
-    contient 7 couleurs. On va récupérer une couleur dans la liste en choisissant un indice aléatoirement. On va importer la bibliothèque 
-    random et utiliser la fonction randint qui retourne un nombre entier aléatoirement entre deux valeurs. 
+    contient 7 couleurs. On va récupérer une couleur dans la liste en choisissant un indice aléatoirement. On va importer la 
+    bibliothèque random et utiliser la fonction randint qui retourne un nombre entier aléatoirement entre deux valeurs. 
     
     3) Fonction trace_Nuage(nomF) déjà expliqué dans la partie "Outil".
     
