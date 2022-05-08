@@ -1,12 +1,9 @@
 # Importation des modules
 from random import uniform , randint
-from tkinter import Menu
-from tkinter.filedialog import askopenfilename
-from math import sqrt
 import tkinter as tk
 import os as os
-import pandas as panda
-
+import pandas
+from tkinter.filedialog import askopenfilename
 
 from pyrsistent import v
 
@@ -63,8 +60,8 @@ def trace_Nuage(nomf):
     tracer_axes()
     liste_points = lit_fichier(nomf)
     for i in range(len(liste_points[0])):
-        canvas.create_oval(float(liste_points[0][i]) + 15,  (height-5) - float(liste_points[1][i])- 15,
-                           float(liste_points[0][i]) + 19, ((height- 5) - float(liste_points[1][i])) - 19,
+        canvas.create_oval(float(liste_points[0][i]) + 15,   height - float(liste_points[1][i]) - 15,
+                           float(liste_points[0][i]) + 19,   height - float(liste_points[1][i]) - 19,
                            fill="red")
 
     nbr_points = len(liste_points[0])   # ou de liste_points[1]
@@ -85,17 +82,17 @@ def trace_droite(a, b):
     Tracer une droitye entre l'ordonée à l'origine et
     le coefficient directeur
     """
-    global height, width, couleur, liste, peut_tracer, liste_x, liste_y, liste_tracer_droite
+    global height, width, couleur, liste, peut_tracer, liste_x, liste_y
     #calcule de la correlation
     if len(liste_x) != 0:
         peut_tracer = forteCorrelation(liste_x, liste_y)
     
     if peut_tracer == True:
-        fonction_lineaire = a * width + b
-        x0 = 5
-        y0 = height - b
+        fonction_lineaire = a * 635 + b
+        x0 = 15
+        y0 = height - 15 - b
         x1 = width       # longueur max de la droite
-        y1 = height - fonction_lineaire 
+        y1 = height - 15 - fonction_lineaire 
         ligne = canvas.create_line(x0, y0, x1, y1, fill= couleur, width=2)
         liste.append(ligne)
 
@@ -122,33 +119,20 @@ def tracer_axes():
         val += 50
 
 
-
-# Série de test partie 1
-#creer_fichier_alea(50, "Fichier_alea")
-#print(lit_fichier("Fichier_alea"))
-# Les 2 tests si dessous s'éxécutent vers la fin du programme
-#tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_alea"))).grid()
-#tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
-
-
 # PARTIE 2
 
 def moyenne(serie):
-    """
-    Fonction qui renvoi la moyenne d'une série
-    """
+    """Fonction qui renvoi la moyenne d'une série"""
     somme = 0
     for elt in serie:
-        somme += int(elt)   
+        somme += float(elt)   
     moyenne = somme / len(serie)
     return moyenne
 
 
 
 def variance(serie):
-    """
-    Fonction qui renvoi la variance d'une série
-    """
+    """Fonction qui renvoi la variance d'une série"""
     moyenne_serie = moyenne(serie)
     somme = 0
     for elt in serie:
@@ -158,9 +142,7 @@ def variance(serie):
 
 
 def covariance(serieX, serieY):
-    """
-    Fonction qui renvoie la covariance entre deux séries
-    """
+    """Fonction qui renvoie la covariance entre deux séries"""
     moyenne_serieX = moyenne(serieX) 
     moyenne_serieY = moyenne(serieY)
     produit = 0
@@ -171,9 +153,7 @@ def covariance(serieX, serieY):
 
 
 def correlation(serieX, serieY):
-    """
-    Fonction qui renvoi la correlation entre deux séries
-    """
+    """Fonction qui renvoi la correlation entre deux séries"""
     variance_serieX = variance(serieX) 
     variance_serieY = variance(serieY)
     covariance_series = covariance(serieX, serieY)
@@ -182,50 +162,32 @@ def correlation(serieX, serieY):
 
 
 def forteCorrelation(serieX, serieY):
-    """
-    Fonction qui prend deux listes de nombres flottants en argument
+    """Fonction qui prend deux listes de nombres flottants en argument
     et verifie si il y a une forte correlation entre les deux listes
-    elle renvoie donc un booléen
-    """
+    elle renvoie donc un booléen"""
     corr = correlation(serieX, serieY)
+    corr = round(corr)
     if (-1 <= corr <= -0.8) or  (0.8 <= corr <= 1):
         return True
     else :
         return False
  
 def droite_regression(serieX, serieY):
-    """
-    Fonction qui Trace a partir des les listes de Position x et y, la droite de regression
-    """
-    a = covariance(serieX,serieY)/variance(serieX)
+    """Fonction qui Trace a partir des les listes de Position x et y, la droite de regression"""
+    a = covariance(serieX,serieY) / variance(serieX)
     b = moyenne(serieY) - a * moyenne(serieX)
     return (a,b)
 
 
 def aide():
-    """
-    Fonction qui renvoi vers le README de Github
-    """
+    """Fonction qui renvoi vers le README de Github"""
     os.system("start https://github.com/uvsq22106064/Projet-stats#readme")
     
-
-
-# Série de test partie 2
-#print(moyenne([4, 6, 5, 6, 8, 4, 6, 5, 10, 5]))
-#print(moyenne([7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-#print(variance([7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-#print(covariance([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-#print(correlation([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-#print(forteCorrelation([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-#print(droite_reg([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
-
 
 # PARTIE 3
 
 def changer_couleur():
-    """ 
-    Va tirer une couleur aléatoire pour la changer au prochain tracé
-    """
+    """ Va tirer une couleur aléatoire pour la changer au prochain tracé"""
     global couleur, liste_couleur
     couleur = liste_couleur[randint(0, len(liste_couleur)-1)]
 
@@ -265,9 +227,10 @@ def ajout_point(event):
 def extraire_info_fichier():
     """ Extrait les infos du fichier villes_virgules.csv en utlisant la bibliothèque pandas
     puis trace le nombre d habitants de 2010 en fonction du nombre d'habitants de 2012."""
-    global liste_x, liste_y, nombre_choisi
+    global liste_x, liste_y, nombre_choisi, height
     liste_x, liste_y = [], []
     canvas.delete("all")
+    tracer_axes()
     if nombre_choisi != 0:
         info_villes = pandas.read_csv("villes_virgule.csv")
         a = info_villes.loc[(info_villes["nb_hab_2010"] <= 500) & (info_villes["nb_hab_2012"] <= 500) , ["nb_hab_2010", "nb_hab_2012"]]
@@ -287,9 +250,9 @@ def extraire_info_fichier():
             liste_y.append(coords[1])
         file_2.close()
         for i in range(nombre_choisi):
-            canvas.create_oval(float(liste_x[(i)]) ,  float(liste_y[i]),
-                                float(liste_x[i]) + 4,  float(liste_y[i]) + 4,
-                                fill="red")
+            canvas.create_oval(float(liste_x[i]) + 15,  height - (float(liste_y[i]) - 15),
+                               float(liste_x[i]) + 19,  height - (float(liste_y[i]) - 19),
+                               fill="red")
 
         j = droite_regression(liste_x,liste_y)
         liste_tracer_droite.insert(0, j[1])
@@ -299,35 +262,38 @@ def extraire_info_fichier():
 
 def extraire_info_fichier_2():
     """
-    
+    Extrait les infos du fichier anscombes.csv en utlisant la bibliothèque pandas
+    puis trace les cooordonnées de la colone Y1 en fonction des coordonées de la colone X1.
     """
     global liste_x, liste_y, nombre_choisi
     liste_x, liste_y = [], []
     canvas.delete("all")
+    tracer_axes()
     if nombre_choisi != 0:
-        info_pourboires = pandas.read_csv("pourboire.csv", sep="\t")
-        b = info_pourboires.loc[:,:]
-        print(b)
-        a = info_pourboires.loc[(info_pourboires["TOTBILL"] < 50.0) & (info_pourboires["TIP"] < 5.0) , ["TOTBILL", "TIP"]]
+        coords = pandas.read_csv("anscombe.csv")
+        liste = coords.columns.tolist()
+        a = coords.loc[: , [liste[2], liste[1]]]    # colones "X", "Y1"
         # tolist() va permettre de récupérer les valeurs de la colone choisis dans la base qu'on a récupérer à la ligne précedante
-        addition = a["TOTBILL"].tolist()             
-        prix_pourboire =  a["TIP"].tolist()
-        
-        file = open("donnees_pourboires", "w")
+        points_Y1 = a[liste[2]].tolist()             
+        points_X =  a[liste[1]].tolist()
+        file = open("ansconbes.txt", "w")
         for i in range(nombre_choisi):
-            file.write(f"{int(addition[i])} {int(prix_pourboire[i])}\n")
+            file.write(f"{int(points_X[i])} {int(points_Y1[i])}\n")
         file.close()
-        file_2 = open("donnees_pourboires", "r")
+        file_2 = open("ansconbes.txt", "r")
         for i in range(nombre_choisi):
             ligne = file_2.readline()
-            prix = ligne.split()
-            liste_x.append(prix[0])
-            liste_y.append(prix[1])
+            p = ligne.split()
+            liste_x.append(p[0])
+            liste_y.append(p[1])
+            
         file_2.close()
+       
         for i in range(nombre_choisi):
-            canvas.create_oval(float(liste_x[(i)]*10) ,  float(liste_y[i]*100),
-                                float(liste_x[i]*10) + 4,  float(liste_y[i]*100) + 4,
-                                fill="red")
+            print(int(liste_y[i]))
+            canvas.create_oval(float(liste_x[i]) + 15,  height - (float(liste_y[i])) - 15,
+                               float(liste_x[i]) + 19,  height - (float(liste_y[i])) - 19,
+                               fill="green")
 
         j = droite_regression(liste_x,liste_y)
         liste_tracer_droite.insert(0, j[1])
@@ -349,7 +315,57 @@ def sauvegarde_configuration():
     Sauvegarder une configuration en cours
     """
     global liste_x, liste_y
-    file = open("sauvegarde_configuration.txt", "w", "Utf-8")
+    file = open("sauvegarde_configuration", "w")
+    for i in range(len(liste_x)):
+        file.write(f"{liste_x[i]} {liste_y[i]}\n")
+        
+    file.close()
+
+def recuperer_configuration():
+    """
+    Lit le fichier ou l'on as sauvegardé une configuration puis on l'affiche.
+    """
+    global liste_x, liste_y, liste_tracer_droite
+    liste_x, liste_y = [], []
+    file = open("sauvegarde_configuration", "r")
+    while 1:
+        ligne = file.readline()
+        a = ligne.split()
+        if ligne == "":
+            break
+        liste_x.append(a[0])
+        liste_y.append(a[1])
+    file.close()
+    tracer_axes()
+    
+    for i in range(len(liste_y)):
+        canvas.create_oval(float(liste_x[i]) + 15,  height - float(liste_y[i])- 15,
+                           float(liste_x[i]) + 19,  height - float(liste_y[i]) - 19,
+                           fill="green")
+    j = droite_regression(liste_x,liste_y)
+    liste_tracer_droite.insert(0, j[1])
+    liste_tracer_droite.insert(0, j[0])
+
+
+
+
+
+# Série de test partie 1:
+
+#creer_fichier_alea(50, "Fichier_alea")
+#print(lit_fichier("Fichier_alea"))
+# Les 2 tests si dessous s'éxécutent vers la fin du programme
+#tk.Button(ecran, text="Graphique", command=lambda:print(trace_Nuage("Fichier_alea"))).grid()
+#tk.Button(ecran, text="Trace_droite", command=lambda:(trace_droite(5, 4))).grid()
+
+# Série de test partie 2
+#print(moyenne([4, 6, 5, 6, 8, 4, 6, 5, 10, 5]))
+#print(moyenne([7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+#print(variance([7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+#print(covariance([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+#print(correlation([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+#print(forteCorrelation([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
+#print(droite_reg([4, 6, 5, 6, 8, 4, 6, 5, 10, 5], [7, 5, 9, 6, 10, 8,9, 7, 8, 7]))
 
 
 
@@ -371,14 +387,40 @@ nombre_choisi = 0
 
 # Création de la fenêtre
 ecran = tk.Tk()
-ecran.geometry("1150x666")
+ecran.geometry("666x666")
 ecran.title("Projet Statistiques descriptive à deux variables: droite de régression.")
 ecran.config(bg="grey")
 
+
+menubar = tk.Menu(ecran)
+ecran.config(menu=menubar)
+
+menuf = tk.Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Fichier", menu=menuf)
+menuf.add_command(label= "Sauvegarder", command=sauvegarde_configuration)
+menuf.add_command(label="récupération_Sauvegarde", command=recuperer_configuration)
+menuf.add_command(label="Aide", command=aide)
+menuf.add_command(label="Quitter", command=ecran.quit)
+
+
+menud = tk.Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Dessin", menu=menud)
+menud.add_command(label= "Activer", command=activer)
+menud.add_command(label= "Désctiver", command=desactiver)
+
+menus = tk.Menu(menubar, tearoff=0)
+menubar.add_cascade(label="droite de régréssion", menu=menus)
+menus.add_command(label="tracer", command=lambda:(trace_droite(liste_tracer_droite[0],liste_tracer_droite[1])))
+menus.add_command(label="Changer couleur", command=changer_couleur)
+
+
+
+
+
 canvas = tk.Canvas(ecran, bg="white", width=width, height=height)
-canvas.grid(row=0 ,column=0, rowspan=11, pady=5, padx=5)
+canvas.grid(row=0 ,column=0, rowspan=18, pady=5, padx=5)
 
-
+"""
 tk.Button(ecran, text="Trace_droite correlation", command=lambda:(trace_droite(liste_tracer_droite[0],liste_tracer_droite[1])))\
     .grid(row=1 ,column=1, padx=50)
 
@@ -392,7 +434,7 @@ tk.Button(ecran, text="Quitter", command=ecran.quit).grid(row=10,column=1)
 
 
 tk.Button(ecran, text="villes_virgules.csv", command=extraire_info_fichier).grid(row=6,column=1)
-tk.Button(ecran, text="pourboire.csv", command=extraire_info_fichier_2).grid(row=6,column=2)
+tk.Button(ecran, text="anscombe.csv", command=extraire_info_fichier_2).grid(row=6,column=2)
 
 # ajout des boutons pour activer et désaactiver la partie dessin
 tk.Button(ecran, text="Activer", command=activer).grid(row=9, column=1)
@@ -404,30 +446,19 @@ entry.grid(row=8, column=1)
 tk.Button(ecran, text="Valider", command=valeur_entrer).grid(row=8, column=2)
 
 
-tk.Button(ecran, text="Aide", command=aide).grid(row=10,column=0)
+tk.Button(ecran, text="Aide", command=aide).grid(row=10,column=2)
+tk.Button(ecran, text="Sauvegarde", command=sauvegarde_configuration).grid(row=11,column=1)
+tk.Button(ecran, text="récupération_Sauvegarde", command=recuperer_configuration).grid(row=11,column=2)
+"""
+
+
+
+
+
+
 
 canvas.bind("<Button>", ajout_point)
 ecran.mainloop()
-
-
-
-### menu déroulable
-menubar = Menu(ecran)
-
-menuf=Menu(menubar, tearoff=0)
-menuf.add_cascade(label = "Fichier", menu=menuf)
-menuf.add_command(label = "Sauvegarder", command=sauvegarde_configuration)
-menuf.add_command(label = "Quitter", command=ecran.quit)
-
-menud=Menu(menubar, tearoff=0)
-menud.add_cascade(label = "Dessin", menu=menud)
-menud.add_command(label = "Activer", command=activer)
-menud.add_command(label = "Désactiver", command=desactiver)
-
-menus=Menu(menubar, tearoff=0)
-menus.add_cascade(label = "droite de regression", menu=menus)
-menus.add_command(label = "Tracer", command=trace_droite)
-menus.add_command(label = "Changer couleur", command=changer_couleur)
 
 
 
