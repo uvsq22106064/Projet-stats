@@ -151,7 +151,8 @@ Création d'un canvas avec une taille défini grâce à deux constantes height e
     4) Bouton "Quitter" qui va fermer la fenêtre lorsqu'on clique dessus grâce à la méthode ecran.quit.
     
     5) Création de deux autres boutons avec le nom de deux fichiers csv qui vont afficher le nuage de point de ces deux fichiers.
-    Les deux fonctions sont quasiement similaire mais on en as fait deux pour plus de lisibilité et pour éviter d'avoir beaucoup d'argument dans la fonction. 
+    Les deux fonctions sont quasiement similaire mais on en as fait deux pour plus de lisibilité et pour éviter d'avoir beaucoup 
+    d'argument dans la fonction. 
     
     6) Une entrée et un bouton valider pour entrer le nombre de ligne que l'utilisateur veut et le valider grâce aux boutons.  
     
@@ -162,9 +163,9 @@ Explication des fonctions:
     
     1) Fonction trace_droite expliqué dans la partie "Outil"
     
-    2) Fonction changer_couleur() : Appelle deux variables globales couleur qui va récupérer la couleur choisi. Et liste couleur qui contient 7 couleurs.
-	On va récupérer une couleur dans la liste en choisissant un indice aléatoirement. On va importer la bibliothèque random et utiliser la fonction randint
-	qui retourne un nombre entier aléatoirement entre deux valeurs. 
+    2) Fonction changer_couleur() : Appelle deux variables globales couleur qui va récupérer la couleur choisi. Et liste couleur qui
+    contient 7 couleurs. On va récupérer une couleur dans la liste en choisissant un indice aléatoirement. On va importer la bibliothèque 
+    random et utiliser la fonction randint qui retourne un nombre entier aléatoirement entre deux valeurs. 
     
     3) Fonction trace_Nuage(nomF) déjà expliqué dans la partie "Outil".
     
@@ -211,10 +212,4 @@ Explication des tests:
 
 Conclusion: 
     - Nombres de lignes pour le projet: 
-    - Temps passé sur le projet:
-    - Avis personel sur le projet:
-        * Lilian SOMMY: Interessant mais la recherche d'un fichier CSV est la partie la plus longue.
-
-        * Mathis VISBECQ:
-
-        * Alann MONNIER-BLONDEAU:
+    - Temps passé sur le projet: 11 heures + 24h derecherche d'un fichier CSV
