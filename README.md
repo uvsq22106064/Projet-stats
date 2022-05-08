@@ -167,6 +167,14 @@ Explication des fonctions:
                                                 Bonus 
 
 # explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
+    1) sauvegarde_configuration() : appelle deux variables globales liste_x et liste_y qui récupère les coordonnees du 
+fichier_alea. Cette fonction sauvegarde les coordonnees des points dans un fichier pour pouvoir les 
+récupérer plus tard.
+    
+    2) recuperer_configuration() : appelle les deux même variables globales que sauvegarde_configuration().
+Récupere les coordonnees dans le fichier, utilise tracer_axes() pour tracer les axes puis place les points 
+au même endroit en leur mettant une couleur verte. 
+
 # remplir dans le srcipt les docstring
 Explication des tests:
 
