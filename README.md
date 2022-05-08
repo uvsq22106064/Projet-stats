@@ -50,15 +50,12 @@ Bibliothèques utilisées:
     - Pandas (Permet de manipuler et analyser des données.)
 
 
-Partie 1:
-                                                Partie "Outils"
-
-# explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
-                                               Partie "Outils"
+# Partie 1:
+ # Partie "Outils"
 1)Fonction creer_fichier_alea(nb, nomfichier) : 
 
-	Créer un fichier avec 500 coordonnés flottante aléatoire (en utilisant la méthode unfiorm de la bibliothèque random) x et y qui vont de 0 à 500. 
-	nb représente le nombre de ligne qu'on shouaite ajouter dans nomFichier.  
+	Créer un fichier avec 500 coordonnés flottante aléatoire (en utilisant la méthode unfiorm de la bibliothèque random) x et y
+	qui vont de 0 à 500. nb représente le nombre de ligne qu'on shouaite ajouter dans nomFichier.  
 
 
 2)Fonction lit_fichier(nomfic) : 
@@ -68,9 +65,10 @@ Partie 1:
 
 3)Fonction trace_Nuage(nomf) :
 
-	Appelle plusieurs variables global height qui récupere la hauteur de la fenetre, liste_y et liste_x qui récupère les coordonnees du 
-	fichier_alea et aussi liste_tracer_droite qui va récupérer le coefficient directeur(a) et l'ordonée à l'origine (b). 
-	Cette fonction  place des point sur un canevas en utilisant les coordonnés que l'on crée avec la fonction creer_fichier_alea(nb, nomfichier).
+	Appelle plusieurs variables global height qui récupere la hauteur de la fenetre, liste_y et liste_x qui récupère
+	les coordonnees du fichier_alea et aussi liste_tracer_droite qui va récupérer le coefficient directeur(a) et
+	l'ordonée à l'origine (b). Cette fonction  place des point sur un canevas en utilisant les coordonnés que l'on crée
+	avec la fonction creer_fichier_alea(nb, nomfichier).
 
 
 4)Fonction trace_droite(a, b) : 
@@ -208,6 +206,9 @@ Explication des fonctions:
     On entre ensuite ses données dans un fichier texte puis on lit ce fichier et trace le nuage de point des habitants de 2010 en fonction des habitants de 2012. 
     
     8) Fonction extraire_info_fichier_2(): Même utilisation que la fonction précédante sauf qu'on ne lit pas le même fichier. Récupère les donnée dans le fichier anscombe.csv qui sont des coordonées et qui vont nous permetrent de tracer une droite de corrélation de coordonnées de Y en fonction de X. 
+    
+![image](https://user-images.githubusercontent.com/91246964/167303250-948dcde0-035a-49b0-89e1-b26d4b5d1590.png)
+
     
     9) Fonction valeur_entry() : affecte à la variable gloabal le nombre_choisi, le nombre entré par l'utilisateur. 
 
