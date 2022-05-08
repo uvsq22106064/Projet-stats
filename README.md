@@ -77,19 +77,14 @@ Bibliothèques utilisées:
 	couleur qui recupere la couleur choisi, liste qui récupère la variable qui représente la ligne tracé pour pouvoir la supprimer
 	plus facilement dans d'autres fonctions.peut_tracer renvoie le booleen qui nous permé de savoir si on peut tracer la droite ou 
 	non, liste_x et liste_y renvoie les coordonnees du fichier_alea.
-	Calcule si la corrélation est forte grâce à  forteCorrelation() qui renvoie True ou False. Si  True la fonction trace_droite(a,b) trace 
-	la droite de corrélation.
+	Calcule si la corrélation est forte grâce à  forteCorrelation() qui renvoie True ou False. Si  True la fonction trace_droite(a,b)
+	trace la droite de corrélation.
 
 
 5)Fonction tracer_axes() : 
 
 	Cette fonction cree les axes des abcisse et des ordonnees avec les graduations 
 	representer par des barres toutes les 50 unitées.
-
-
-		 bien parler du fichier qu on va créer
-			Explication des tests:
-
 
 
 # Partie " Calculs Statistiques"
@@ -190,23 +185,24 @@ Explication des fonctions:
     
     5) Fonction désactiver() : Va appeler la variable globale dessin pour la mettre à fausse.
     
-    6) Les 2 fonctions précédantes sont reliés par la méthode canvas.bind("<Button>", ajout_point) et la fonction ajout_point(). Dès que l'on 
-	clique dans le canvas va appeler cette fonction. Cette fonction prend comme argument event qui représente l'évènement clic et qui est 
-	obligatoire avec la méthode bind(). 
-    Appelle 4 variables globales les deux listes de coordonées x et y, une liste qui contient les variables ligne que l'on a tracé ainsi que 
-	la variable dessin qui si elle est a false ne trace pas les points. Si dessin a True. On créer un point en utilisant les coodonées récupérés
-	grâce à event.x et event.y qui donne les coordonnées ou l'on clique. Ensuite ajoute les coordonnées dans les deux listes de coordonnées.
+    6) Les 2 fonctions précédantes sont reliés par la méthode canvas.bind("<Button>", ajout_point) et la fonction ajout_point().
+    Dès que l'on clique dans le canvas va appeler cette fonction. Cette fonction prend comme argument event qui représente l'évènement
+    clic et qui est obligatoire avec la méthode bind(). Appelle 4 variables globales les deux listes de coordonées x et y, une liste 
+    qui contient les variables ligne que l'on a tracé ainsi que la variable dessin qui si elle est a false ne trace pas les points. 
+    Si dessin a True. On créer un point en utilisant les coodonées récupérés grâce à event.x et event.y qui donne les coordonnées ou 
+    l'on clique. Ensuite ajoute les coordonnées dans les deux listes de coordonnées.
     On ne peut tracer la droite de corrélation que si l'on a deux points si c'est le cas on récupère les variables a et b grâce à
 	fonction droite_reg(liste_x, liste_y) et on les ajoute dans la liste "liste_tracer_droite".
     
     7) Fonction extraire_info_fichier() : Va lire le fichier csv grâce à la bibliothèque panda et la méthode pandas.read_csv(). 
-    	Ensuite on récupère les lignes et colones qu'on veut en imposant que la pop de chaque ville est inférieur à 500 pour les populations de 2010 et 2012.
-	Ensuite grâce à la méthode .tolist() (que l'on a découvert en demandant à un de nos amis car on ne trouvais pas comment juste récupérer les valeurs 
-	d'une colone) on récupère les valeurs d'une colone.
-    On entre ensuite ses données dans un fichier texte puis on lit ce fichier et trace le nuage de point des habitants de 2010 en fonction des habitants de 2012. 
+    	Ensuite on récupère les lignes et colones qu'on veut en imposant que la pop de chaque ville est inférieur à 500 pour les
+	populations de 2010 et 2012. Ensuite grâce à la méthode .tolist() (que l'on a découvert en demandant à un de nos amis car 
+	on ne trouvais pas comment juste récupérer les valeurs d'une colone) on récupère les valeurs d'une colone. On entre ensuite ses
+	données dans un fichier texte puis on lit ce fichier et trace le nuage de point des habitants de 2010 en fonction des habitants de 2012. 
     
-    8) Fonction extraire_info_fichier_2(): Même utilisation que la fonction précédante sauf qu'on ne lit pas le même fichier. Récupère les donnée dans
-    le fichier anscombe.csv qui sont des coordonées et qui vont nous permetrent de tracer une droite de corrélation de coordonnées de Y en fonction de X. 
+    8) Fonction extraire_info_fichier_2(): Même utilisation que la fonction précédante sauf qu'on ne lit pas le même fichier. Récupère 
+    les donnée dans le fichier anscombe.csv qui sont des coordonées et qui vont nous permetrent de tracer une droite de corrélation de
+    coordonnées de Y en fonction de X. 
     
 ![image](https://user-images.githubusercontent.com/91246964/167303250-948dcde0-035a-49b0-89e1-b26d4b5d1590.png)
 
