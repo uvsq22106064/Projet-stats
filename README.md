@@ -97,13 +97,14 @@ Pour la partie de caluls de statistique il est nécessaire d'avoir ces 4 outils 
 
 	C'est une fonction qui prends en entrée une liste et en calculs la variance a l'aide de l'outils moyenne() en suivant cette équation:
 
-	![image](https://user-images.githubusercontent.com/91246964/167264923-efe9ffa2-a3d9-4e29-8adb-8a803fbd8adb.png)
+![image](https://user-images.githubusercontent.com/91246964/167264923-efe9ffa2-a3d9-4e29-8adb-8a803fbd8adb.png)
 
-	Cette fonction renvoie donc un flottant.
+Cette fonction renvoie donc un flottant.
 
 "covariance(serieX, serieY)"
 	
-	Prends en entrée deux listes (ici correspondant aux coordonnée x et y) pour a l'aide de l'outils variance() en calculer la covariance en suivant cette 		équation:
+	Prends en entrée deux listes (ici correspondant aux coordonnée x et y) pour a l'aide de l'outils variance() en calculer la covariance
+	en suivant cette équation:
 
 ![image](https://user-images.githubusercontent.com/91246964/167264980-cf1b1d43-48ed-4fcd-8e1e-dfa89e438426.png)
 
@@ -112,7 +113,8 @@ Cette fonction renvoie donc un flottant.
 
 "correlation(serieX, serieY)"
 
-	Fonction qui prends en entrée deux listes pour en calculer, a l'aide de l'outils "variance()" le coefficient de correlation en suivant cette équation:
+	Fonction qui prends en entrée deux listes pour en calculer, a l'aide de l'outils "variance()" le coefficient de correlation en 
+	suivant cette équation:
 
 ![image](https://user-images.githubusercontent.com/91246964/167265085-dbb71a89-6e78-40cd-bdde-f6e21215bde4.png)
 
@@ -126,7 +128,8 @@ la fonction "forteCorrelation(serieX, serieY)" verifie cela.
 
 La fonction "droite_regression(serieX, serieY)" 
 
-	elle permet grace aux outils covariance() et moyenne() de renvoiyer deux flottant correspondant au coefficient directeur (a) et l'ordonnée a l'origine (b) de la droite de regression qui est de forme y = ax+b 
+	elle permet grace aux outils covariance() et moyenne() de renvoiyer deux flottant correspondant au coefficient directeur (a) et 
+	l'ordonnée a l'origine (b) de la droite de regression qui est de forme y = ax+b 
 
 ![image](https://user-images.githubusercontent.com/91246964/167265454-30f8ecc7-2f73-4df8-b7b5-cc0fd306ba31.png)
 
