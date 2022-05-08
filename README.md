@@ -198,7 +198,8 @@ Explication des fonctions:
     	Ensuite on récupère les lignes et colones qu'on veut en imposant que la pop de chaque ville est inférieur à 500 pour les
 	populations de 2010 et 2012. Ensuite grâce à la méthode .tolist() (que l'on a découvert en demandant à un de nos amis car 
 	on ne trouvais pas comment juste récupérer les valeurs d'une colone) on récupère les valeurs d'une colone. On entre ensuite ses
-	données dans un fichier texte puis on lit ce fichier et trace le nuage de point des habitants de 2010 en fonction des habitants de 2012. 
+	données dans un fichier texte puis on lit ce fichier et trace le nuage de point des habitants de 2010 en fonction des habitants 
+	de 2012. 
     
     8) Fonction extraire_info_fichier_2(): Même utilisation que la fonction précédante sauf qu'on ne lit pas le même fichier. Récupère 
     les donnée dans le fichier anscombe.csv qui sont des coordonées et qui vont nous permetrent de tracer une droite de corrélation de
