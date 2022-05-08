@@ -55,37 +55,49 @@ Partie 1:
 
 # explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
                                                Partie "Outils"
-1)Fonction creer_fichier_alea(nb, nomfichier) : créer un fichier avec 500 coordonnés flottante aléatoire (en utilisant la méthode unfiorm de la bibliothèque random) x et y qui vont de 0 à 500. nb représente le nombre de ligne qu'on shouaite ajouter dans nomFichier.  
+1)Fonction creer_fichier_alea(nb, nomfichier) : 
+
+	Créer un fichier avec 500 coordonnés flottante aléatoire (en utilisant la méthode unfiorm de la bibliothèque random) x et y qui vont de 0 à 500. 
+	nb représente le nombre de ligne qu'on shouaite ajouter dans nomFichier.  
 
 
-2)Fonction lit_fichier(nomfic) : lit les coordonnés de chaque ligne qu'il y a dans le fichier qu'on a créer dans la fonction creer_fichier_alea(nb, nomfichier).
+2)Fonction lit_fichier(nomfic) : 
+
+	Lit les coordonnés de chaque ligne qu'il y a dans le fichier qu'on a créer dans la fonction creer_fichier_alea(nb, nomfichier).
 
 
-3)Fonction trace_Nuage(nomf) : appelle plusieurs variables global height qui récupere la hauteur de la 
-fenetre, liste_y et liste_x qui récupère les coordonnees du fichier_alea et aussi liste_tracer_droite qui va récupérer le coefficient directeur(a) et l'ordonée à l'origine (b). 
-Cette fonction  place des point sur un canevas en utilisant les coordonnés que l'on crée avec la focntion creer_fichier_alea(nb, nomfichier).
+3)Fonction trace_Nuage(nomf) :
+
+	Appelle plusieurs variables global height qui récupere la hauteur de la fenetre, liste_y et liste_x qui récupère les coordonnees du 
+	fichier_alea et aussi liste_tracer_droite qui va récupérer le coefficient directeur(a) et l'ordonée à l'origine (b). 
+	Cette fonction  place des point sur un canevas en utilisant les coordonnés que l'on crée avec la fonction creer_fichier_alea(nb, nomfichier).
 
 
-4)Fonction trace_droite(a, b) : appelle plusieurs variables global height qui recupere la hauteur de la 
-fenetre, width qui recupere la largeur de la fenetre, couleur qui recupere la couleur choisi,
-liste qui récupère la variable qui représente la ligne tracé pour pouvoir la supprimer plus facilement dans d'autres fonctions.peut_tracer renvoie le booleen qui nous permé de savoir si on peut tracer la droite ou 
-non, liste_x et liste_y renvoie les coordonnees du fichier_alea.
-Calcule si la corrélation est forte grâce à  forteCorrelation() qui renvoie True ou False. Si  True la fonction trace_droite(a,b) trace la droite de corrélation.
+4)Fonction trace_droite(a, b) : 
+
+	appelle plusieurs variables global height qui recupere la hauteur de la fenetre, width qui recupere la largeur de la fenetre, 
+	couleur qui recupere la couleur choisi, liste qui récupère la variable qui représente la ligne tracé pour pouvoir la supprimer
+	plus facilement dans d'autres fonctions.peut_tracer renvoie le booleen qui nous permé de savoir si on peut tracer la droite ou 
+	non, liste_x et liste_y renvoie les coordonnees du fichier_alea.
+	Calcule si la corrélation est forte grâce à  forteCorrelation() qui renvoie True ou False. Si  True la fonction trace_droite(a,b) trace 
+	la droite de corrélation.
 
 
-5)Fonction tracer_axes() : cette fonction cree les axes des abcisse et des ordonnees avec les graduations 
-representer par des barres toutes les 50 unitées.
+5)Fonction tracer_axes() : 
+
+	Cette fonction cree les axes des abcisse et des ordonnees avec les graduations 
+	representer par des barres toutes les 50 unitées.
 
 
-# bien parler du fichier qu on va créer
-Explication des tests:
+		 bien parler du fichier qu on va créer
+			Explication des tests:
 
 
 
-                                                Partie " Calculs Statistiques"
+# Partie " Calculs Statistiques"
 
-# explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
-Pour la partie de caluls de statistique il est nécessaire d'avoir ces 4 outils definit :
+	 explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
+	 Pour la partie de caluls de statistique il est nécessaire d'avoir ces 4 outils definit :
 
 "moyenne(serie)"
 
@@ -95,7 +107,8 @@ Pour la partie de caluls de statistique il est nécessaire d'avoir ces 4 outils 
 
 "variance(serie)"
 
-	C'est une fonction qui prends en entrée une liste et en calculs la variance a l'aide de l'outils moyenne() en suivant cette équation:
+	C'est une fonction qui prends en entrée une liste et en calculs la variance a l'aide de l'outils moyenne() en suivant 
+	cette équation:
 
 ![image](https://user-images.githubusercontent.com/91246964/167264923-efe9ffa2-a3d9-4e29-8adb-8a803fbd8adb.png)
 
@@ -103,8 +116,8 @@ Cette fonction renvoie donc un flottant.
 
 "covariance(serieX, serieY)"
 	
-	Prends en entrée deux listes (ici correspondant aux coordonnée x et y) pour a l'aide de l'outils variance() en calculer la covariance
-	en suivant cette équation:
+	Prends en entrée deux listes (ici correspondant aux coordonnée x et y) pour a l'aide de l'outils variance() en calculer 
+	la covariance en suivant cette équation:
 
 ![image](https://user-images.githubusercontent.com/91246964/167264980-cf1b1d43-48ed-4fcd-8e1e-dfa89e438426.png)
 
@@ -124,11 +137,11 @@ Voiçi les fonction utiliser pour la partie calculs en statistique:
 
 Afin de savoir si il est pertinent de tracer une droite de regression il faut que le coefficient de correlation sois compris en dehors de -0.8 et 0.8
 
-la fonction "forteCorrelation(serieX, serieY)" verifie cela.
+la fonction "forteCorrelation(serieX, serieY)" verifie cela et renvoie simplement un booléen.
 
 La fonction "droite_regression(serieX, serieY)" 
 
-	elle permet grace aux outils covariance() et moyenne() de renvoiyer deux flottant correspondant au coefficient directeur (a) et 
+	Elle permet grace aux outils covariance() et moyenne() de renvoiyer deux flottant correspondant au coefficient directeur (a) et 
 	l'ordonnée a l'origine (b) de la droite de regression qui est de forme y = ax+b 
 
 ![image](https://user-images.githubusercontent.com/91246964/167265454-30f8ecc7-2f73-4df8-b7b5-cc0fd306ba31.png)
