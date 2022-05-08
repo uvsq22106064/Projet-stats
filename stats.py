@@ -1,10 +1,12 @@
 # Importation des modules
 from random import uniform , randint
-import tkinter as tk
-from math import sqrt
-import os as os
-import pandas
+from tkinter import Menu
 from tkinter.filedialog import askopenfilename
+from math import sqrt
+import tkinter as tk
+import os as os
+import pandas as panda
+
 
 from pyrsistent import v
 
@@ -406,4 +408,26 @@ tk.Button(ecran, text="Aide", command=aide).grid(row=10,column=0)
 
 canvas.bind("<Button>", ajout_point)
 ecran.mainloop()
+
+
+
+### menu déroulable
+menubar = Menu(ecran)
+
+menuf=Menu(menubar, tearoff=0)
+menuf.add_cascade(label = "Fichier", menu=menuf)
+menuf.add_command(label = "Sauvegarder", command=sauvegarde_configuration)
+menuf.add_command(label = "Quitter", command=ecran.quit)
+
+menud=Menu(menubar, tearoff=0)
+menud.add_cascade(label = "Dessin", menu=menud)
+menud.add_command(label = "Activer", command=activer)
+menud.add_command(label = "Désactiver", command=desactiver)
+
+menus=Menu(menubar, tearoff=0)
+menus.add_cascade(label = "droite de regression", menu=menus)
+menus.add_command(label = "Tracer", command=trace_droite)
+menus.add_command(label = "Changer couleur", command=changer_couleur)
+
+
 
