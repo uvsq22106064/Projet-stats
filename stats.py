@@ -3,9 +3,7 @@ from random import uniform , randint
 import tkinter as tk
 import os as os
 import pandas
-from tkinter.filedialog import askopenfilename
-
-from pyrsistent import v
+from math import sqrt
 
 # Création des fonctions
 # PARTIE 1
@@ -231,6 +229,7 @@ def extraire_info_fichier():
     liste_x, liste_y = [], []
     canvas.delete("all")
     tracer_axes()
+    nouvelle_fenetre()
     if nombre_choisi != 0:
         info_villes = pandas.read_csv("villes_virgule.csv")
         a = info_villes.loc[(info_villes["nb_hab_2010"] <= 500) & (info_villes["nb_hab_2012"] <= 500) , ["nb_hab_2010", "nb_hab_2012"]]
@@ -269,6 +268,8 @@ def extraire_info_fichier_2():
     liste_x, liste_y = [], []
     canvas.delete("all")
     tracer_axes()
+    message="Entrer un nombre inférieur strictement à 11: "
+    nouvelle_fenetre(message)
     if nombre_choisi != 0:
         coords = pandas.read_csv("anscombe.csv")
         liste = coords.columns.tolist()
@@ -299,13 +300,28 @@ def extraire_info_fichier_2():
         liste_tracer_droite.insert(0, j[1])
         liste_tracer_droite.insert(0, j[0])    
 
-def valeur_entrer():
+
+    
+def nouvelle_fenetre(message="Entrer un nombre: "):
+    """
+    Création d'une nouvelle fenêtre pour pouvoir récupérer le nombre de ligne que l'on souhaite
+    """
+    ecran_2 = tk.Toplevel()
+    tk.Label(ecran_2, text=message).grid()
+    entry = tk.Entry(ecran_2, bg="white", fg="red")
+    entry.grid()
+    tk.Button(ecran_2, text="Valider", command=lambda:(valeur_entrer(entry.get()))).grid()
+    tk.Button(ecran_2, text="QUITTER", command=ecran_2.quit).grid()
+    
+    ecran_2.mainloop()
+
+def valeur_entrer(entry):
     """
     Récupère la valeur entrer par l'utilisateur après avoir appuyer sur le 
     bouton valider. 
     """
     global nombre_choisi
-    nombre_choisi = int(entry.get())
+    nombre_choisi = int(entry)
     
 
 # Bonus
@@ -385,6 +401,7 @@ nombre_choisi = 0
 
 
 
+
 # Création de la fenêtre
 ecran = tk.Tk()
 ecran.geometry("666x666")
@@ -413,49 +430,18 @@ menubar.add_cascade(label="droite de régréssion", menu=menus)
 menus.add_command(label="tracer", command=lambda:(trace_droite(liste_tracer_droite[0],liste_tracer_droite[1])))
 menus.add_command(label="Changer couleur", command=changer_couleur)
 
+menufichier = tk.Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Différents fichiers", menu=menufichier)
+menufichier.add_command(label="Nuages de points: Fichier Alea", command=lambda:trace_Nuage("Fichier_alea"))
+menufichier.add_command(label="Nuages de points: Fichier exemple.txt", command=lambda:trace_Nuage("exemple.txt"))
+menufichier.add_command(label="villes_virgules.csv", command=extraire_info_fichier)
+menufichier.add_command(label="ansconbes.csv", command=extraire_info_fichier_2)
 
 
 
 
 canvas = tk.Canvas(ecran, bg="white", width=width, height=height)
 canvas.grid(row=0 ,column=0, rowspan=18, pady=5, padx=5)
-
-"""
-tk.Button(ecran, text="Trace_droite correlation", command=lambda:(trace_droite(liste_tracer_droite[0],liste_tracer_droite[1])))\
-    .grid(row=1 ,column=1, padx=50)
-
-tk.Button(ecran, text="Autre couleur", command=changer_couleur).grid(row=2 ,column=1, padx=50)
-
-
-tk.Button(ecran, text="Nuages de points: Fichier Alea", command=lambda:trace_Nuage("Fichier_alea")).grid(row=4 ,column=1, padx=50)
-tk.Button(ecran, text="Nuages de points: Fichier exemple.txt", command=lambda:trace_Nuage("exemple.txt")).grid(row=5,column=1, padx=50)
-
-tk.Button(ecran, text="Quitter", command=ecran.quit).grid(row=10,column=1)
-
-
-tk.Button(ecran, text="villes_virgules.csv", command=extraire_info_fichier).grid(row=6,column=1)
-tk.Button(ecran, text="anscombe.csv", command=extraire_info_fichier_2).grid(row=6,column=2)
-
-# ajout des boutons pour activer et désaactiver la partie dessin
-tk.Button(ecran, text="Activer", command=activer).grid(row=9, column=1)
-tk.Button(ecran, text="Désactiver", command=desactiver).grid(row=9, column=2)
-
-tk.Label(ecran, text="Entrez le nombre de points que vous voulez. Doit être différente de 0 :").grid(row=7, column=1)
-entry = tk.Entry(ecran, bg="white", fg="red")
-entry.grid(row=8, column=1)
-tk.Button(ecran, text="Valider", command=valeur_entrer).grid(row=8, column=2)
-
-
-tk.Button(ecran, text="Aide", command=aide).grid(row=10,column=2)
-tk.Button(ecran, text="Sauvegarde", command=sauvegarde_configuration).grid(row=11,column=1)
-tk.Button(ecran, text="récupération_Sauvegarde", command=recuperer_configuration).grid(row=11,column=2)
-"""
-
-
-
-
-
-
 
 canvas.bind("<Button>", ajout_point)
 ecran.mainloop()
