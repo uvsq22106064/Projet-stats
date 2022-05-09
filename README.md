@@ -190,6 +190,9 @@ régression. Création d'un canvas avec une taille défini grâce à deux consta
 Il est a noté que les boutons decrit ci dessus sont placer dans des Menus.
 
 
+![image](https://user-images.githubusercontent.com/91246964/167366336-cb37871a-1ae8-4378-b5fd-574ec1c73801.png)
+
+
 
 Explication des fonctions:
     
