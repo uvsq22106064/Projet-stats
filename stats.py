@@ -10,11 +10,11 @@ from math import sqrt
 
 def creer_fichier_alea(nb, nomfichier):
     """
-    Fonction qui prend un nb en entier et un nomfichier en string.
-    Fonction quiva créer un fichier texte avec commme nom
-    l'argument nomfichier, avec nbr de lignes correspondant a
+    Fonction qui prend un nb en entier et un nom fichier en string.
+    Fonction qui va créer un fichier texte avec comme nom
+    l'argument nom fichier, avec Nbr de lignes correspondant a
     l'argument nb.
-    Chaque ligne contiendra deux nbrs aleatoires flottants
+    Chaque ligne contiendra deux nbrs aléatoires flottants
     """
     file = open(nomfichier, "w", encoding="Utf-8")
     i = 0
@@ -49,8 +49,8 @@ def trace_Nuage(nomf):
     Fonction qui prend en argument le nom d'un fichier en string.
     Fichier qui contient les coordonées des points d'un nuage.
     Fonction va appeler la fonction lit_fichier puis va représenter
-    le nuage de points correspondant.Puis renverra le nombre de points
-    dessinés.
+    le nuage de points correspondant. Puis renverra le nombre de points
+    dessiné.
     """
     global height, liste_y, liste_x, liste_tracer_droite, width
     canvas.delete("all")
@@ -75,9 +75,9 @@ def trace_Nuage(nomf):
 
 def trace_droite(a, b):
     """
-    Fonction qui prend duex flottants en arguments
-    a = coefficient directeur et b =l'ordonée à l'origine.
-    Tracer une droitye entre l'ordonée à l'origine et
+    Fonction qui prend deux nombres (flottants) en arguments
+    a = coefficient directeur et b = l'ordonée à l'origine.
+    Tracer une droite entre l'ordonée à l'origine et
     le coefficient directeur
     """
     global height, width, couleur, liste, peut_tracer, liste_x, liste_y
@@ -120,7 +120,9 @@ def tracer_axes():
 # PARTIE 2
 
 def moyenne(serie):
-    """Fonction qui renvoi la moyenne d'une série"""
+    """
+    Fonction qui renvoie la moyenne d'une série
+    """
     somme = 0
     for elt in serie:
         somme += float(elt)   
@@ -130,7 +132,9 @@ def moyenne(serie):
 
 
 def variance(serie):
-    """Fonction qui renvoi la variance d'une série"""
+    """
+    Fonction qui renvoie la variance d'une série
+    """
     moyenne_serie = moyenne(serie)
     somme = 0
     for elt in serie:
@@ -140,7 +144,9 @@ def variance(serie):
 
 
 def covariance(serieX, serieY):
-    """Fonction qui renvoie la covariance entre deux séries"""
+    """
+    Fonction qui renvoie la covariance entre deux séries
+    """
     moyenne_serieX = moyenne(serieX) 
     moyenne_serieY = moyenne(serieY)
     produit = 0
@@ -151,7 +157,9 @@ def covariance(serieX, serieY):
 
 
 def correlation(serieX, serieY):
-    """Fonction qui renvoi la correlation entre deux séries"""
+    """
+    Fonction qui renvoie la correlation entre deux séries
+    """
     variance_serieX = variance(serieX) 
     variance_serieY = variance(serieY)
     covariance_series = covariance(serieX, serieY)
@@ -160,9 +168,11 @@ def correlation(serieX, serieY):
 
 
 def forteCorrelation(serieX, serieY):
-    """Fonction qui prend deux listes de nombres flottants en argument
+    """
+    Fonction qui prend deux listes de nombres flottants en argument
     et verifie si il y a une forte correlation entre les deux listes
-    elle renvoie donc un booléen"""
+    elle renvoie donc un booléen
+    """
     corr = correlation(serieX, serieY)
     corr = round(corr)
     if (-1 <= corr <= -0.8) or  (0.8 <= corr <= 1):
@@ -171,41 +181,47 @@ def forteCorrelation(serieX, serieY):
         return False
  
 def droite_regression(serieX, serieY):
-    """Fonction qui Trace a partir des les listes de Position x et y, la droite de regression"""
+    """
+    Fonction qui trace à partir des les listes de Position x et y, la droite de regression
+    """
     a = covariance(serieX,serieY) / variance(serieX)
     b = moyenne(serieY) - a * moyenne(serieX)
     return (a,b)
 
 
 def aide():
-    """Fonction qui renvoi vers le README de Github"""
+    """
+    Fonction qui renvoie vers le README de Github
+    """
     os.system("start https://github.com/uvsq22106064/Projet-stats#readme")
     
 
 # PARTIE 3
 
 def changer_couleur():
-    """ Va tirer une couleur aléatoire pour la changer au prochain tracé"""
+    """ 
+   Fonction qui tire une couleur aléatoire pour la changer au prochain tracé
+    """
     global couleur, liste_couleur
     couleur = liste_couleur[randint(0, len(liste_couleur)-1)]
 
 def desactiver():
     """
-    Va retirer la fonctionalité d'ajouter des points manuellements.
+    Fonction qui désactive la fonctionalité d'ajouter des points manuellements.
     """
     global dessin
     dessin = False
 
 def activer():
     """ 
-    Va activer la fonctionalité d'ajouter des points manuellements.
+    Fonction qui active la fonctionalité d'ajouter des points manuellements.
     """
     global dessin
     dessin = True
 
 def ajout_point(event):
     """ 
-    Ajoute des points dès que l'on clique.
+    Fonction qui ajoute des points dès que l'on clique.
     """
     global liste_x, liste_y, dessin, liste
     if dessin == True:
@@ -223,8 +239,10 @@ def ajout_point(event):
 
         
 def extraire_info_fichier():
-    """ Extrait les infos du fichier villes_virgules.csv en utlisant la bibliothèque pandas
-    puis trace le nombre d habitants de 2010 en fonction du nombre d'habitants de 2012."""
+    """ 
+    Fonction qui extrait les infos du fichier villes_virgules.csv en utlisant la bibliothèque pandas
+    puis trace le nombre d'habitants de 2010 en fonction du nombre d'habitants de 2012.
+    """
     global liste_x, liste_y, nombre_choisi, height
     liste_x, liste_y = [], []
     canvas.delete("all")
@@ -261,7 +279,7 @@ def extraire_info_fichier():
 
 def extraire_info_fichier_2():
     """
-    Extrait les infos du fichier anscombes.csv en utlisant la bibliothèque pandas
+    Fonction qui extrait les infos du fichier anscombes.csv en utlisant la bibliothèque pandas
     puis trace les cooordonnées de la colone Y1 en fonction des coordonées de la colone X1.
     """
     global liste_x, liste_y, nombre_choisi
@@ -304,7 +322,7 @@ def extraire_info_fichier_2():
     
 def nouvelle_fenetre(message="Entrer un nombre: "):
     """
-    Création d'une nouvelle fenêtre pour pouvoir récupérer le nombre de ligne que l'on souhaite
+    Fonction qui créer une nouvelle fenêtre pour pouvoir récupérer le nombre de ligne que l'on souhaite
     """
     ecran_2 = tk.Toplevel()
     tk.Label(ecran_2, text=message).grid()
@@ -317,7 +335,7 @@ def nouvelle_fenetre(message="Entrer un nombre: "):
 
 def valeur_entrer(entry):
     """
-    Récupère la valeur entrer par l'utilisateur après avoir appuyer sur le 
+    Fonction qui récupère la valeur entrer par l'utilisateur après avoir appuyer sur le 
     bouton valider. 
     """
     global nombre_choisi
@@ -328,7 +346,7 @@ def valeur_entrer(entry):
 
 def sauvegarde_configuration():
     """
-    Sauvegarder une configuration en cours
+    Fonction qui sauvegarde une configuration en cours
     """
     global liste_x, liste_y
     file = open("sauvegarde_configuration", "w")
@@ -339,7 +357,7 @@ def sauvegarde_configuration():
 
 def recuperer_configuration():
     """
-    Lit le fichier ou l'on as sauvegardé une configuration puis on l'affiche.
+    Fonction qui lit le fichier ou l'on as sauvegardé une configuration puis on l'affiche.
     """
     global liste_x, liste_y, liste_tracer_droite
     liste_x, liste_y = [], []
