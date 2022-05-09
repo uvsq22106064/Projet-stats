@@ -92,13 +92,13 @@ Bibliothèques utilisées:
 	 explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
 	 Pour la partie de caluls de statistique il est nécessaire d'avoir ces 4 outils definit :
 
-"moyenne(serie)"
+*"moyenne(serie)"
 
 	C'est une fonction qui prends en entrée une liste et calculs la moyenne des flottant qu'elle contient.
 
 	Cette fonction renvoie donc un flottant.
 
-"variance(serie)"
+*"variance(serie)"
 
 	C'est une fonction qui prends en entrée une liste et en calculs la variance a l'aide de l'outils moyenne() en suivant 
 	cette équation:
@@ -107,7 +107,7 @@ Bibliothèques utilisées:
 
 Cette fonction renvoie donc un flottant.
 
-"covariance(serieX, serieY)"
+*"covariance(serieX, serieY)"
 	
 	Prends en entrée deux listes (ici correspondant aux coordonnée x et y) pour a l'aide de l'outils variance() en calculer 
 	la covariance en suivant cette équation:
@@ -117,7 +117,7 @@ Cette fonction renvoie donc un flottant.
 Cette fonction renvoie donc un flottant.
 
 
-"correlation(serieX, serieY)"
+*"correlation(serieX, serieY)"
 
 	Fonction qui prends en entrée deux listes pour en calculer, a l'aide de l'outils "variance()" le coefficient de correlation en 
 	suivant cette équation:
@@ -144,9 +144,7 @@ La fonction "aide()" renvoie vers ce Readme
 
 
 
-
-
-                                                Programme Principale
+# Programme Principale
 
 Création d'une fenêtre nomée ecran de taille 1250x666 avec comme titre "Projet Statistiques descriptive à deux variables: droite de régression.".
 Création d'un canvas avec une taille défini grâce à deux constantes height et weight. 
@@ -170,7 +168,12 @@ Création d'un canvas avec une taille défini grâce à deux constantes height e
     
     7) Deux boutons actver et désactiver. Si l'on appuie sur activer on peut ajouter des points sur le canvas qui sont pris en compte 
     dans le calcul de la corrélation. Et si on fait désactiver on ne peut plus en ajouter. 
+
+
 Il est a noté que les boutons decrit ci dessus sont placer dans des Menus.
+
+
+
 Explication des fonctions:
     
     1) Fonction trace_droite expliqué dans la partie "Outil"
@@ -211,11 +214,9 @@ Explication des fonctions:
     9) Fonction valeur_entry() : affecte à la variable gloabal le nombre_choisi, le nombre entré par l'utilisateur. 
 
 
+# Bonus 
 
 
-                                                Bonus 
-
-# explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
 1) sauvegarde_configuration() : 
 	
 		Appelle deux variables globales liste_x et liste_y qui récupère les coordonnees du fichier_alea.
@@ -228,10 +229,9 @@ Explication des fonctions:
 		Récupere les coordonnees dans le fichier, utilise tracer_axes() pour tracer les axes puis place les points 
 		au même endroit en leur mettant une couleur verte. 
 
-# remplir dans le srcipt les docstring
-Explication des tests:
-
 
 Conclusion: 
-    - Nombres de lignes pour le projet: 
-    - Temps passé sur le projet: 11 heures + 24h derecherche d'un fichier CSV
+
+- Nombres de lignes pour le projet: *465*
+    
+- Temps passé sur le projet: 11 heures + 24h derecherche d'un fichier CSV
