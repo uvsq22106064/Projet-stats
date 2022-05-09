@@ -163,8 +163,8 @@ La fonction "droite_regression(serieX, serieY)"
 
 # Programme Principale
 
-Création d'une fenêtre nomée ecran de taille 1250x666 avec comme titre "Projet Statistiques descriptive à deux variables: droite de régression.".
-Création d'un canvas avec une taille défini grâce à deux constantes height et weight. 
+Création d'une fenêtre nomée ecran de taille 1250x666 avec comme titre "Projet Statistiques descriptive à deux variables: droite de 
+régression. Création d'un canvas avec une taille défini grâce à deux constantes height et weight. 
     
     1) Button "tracer_droite correlation" utilise la fonction présenter dans la partie "Outils" du Readme va donc tracer la 
     droite de correlation d'un nuages de points ou tracer une droite avec des coordonées aléatoires si on a pas de nuages de points.
@@ -252,3 +252,9 @@ Conclusion:
 - Nombres de lignes pour le projet: *465*
     
 - Temps passé sur le projet: 11 heures + 24h derecherche d'un fichier CSV
+
+
+Avis global sur le projet :
+
+Beaucoup de difficultées pour trouver un fichier CSV. Ensuite le projet a une approche un peu moins ludique que les autres projet mais 
+la partie statistique en reste très intéressante.
