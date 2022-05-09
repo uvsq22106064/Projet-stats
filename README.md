@@ -52,18 +52,18 @@ Bibliothèques utilisées:
 
 # Partie 1:
  # Partie "Outils"
-1)Fonction creer_fichier_alea(nb, nomfichier) : 
+1)*creer_fichier_alea(nb, nomfichier)* : 
 
 	Créer un fichier avec 500 coordonnés flottante aléatoire (en utilisant la méthode unfiorm de la bibliothèque random) x et y
 	qui vont de 0 à 500. nb représente le nombre de ligne qu'on shouaite ajouter dans nomFichier.  
 
 
-2)Fonction lit_fichier(nomfic) : 
+2)*lit_fichier(nomfic)* : 
 
 	Lit les coordonnés de chaque ligne qu'il y a dans le fichier qu'on a créer dans la fonction creer_fichier_alea(nb, nomfichier).
 
 
-3)Fonction trace_Nuage(nomf) :
+3)*trace_Nuage(nomf)* :
 
 	Appelle plusieurs variables global height qui récupere la hauteur de la fenetre, liste_y et liste_x qui récupère
 	les coordonnees du fichier_alea et aussi liste_tracer_droite qui va récupérer le coefficient directeur(a) et
@@ -71,7 +71,7 @@ Bibliothèques utilisées:
 	avec la fonction creer_fichier_alea(nb, nomfichier).
 
 
-4)Fonction trace_droite(a, b) : 
+4)*trace_droite(a, b)* : 
 
 	appelle plusieurs variables global height qui recupere la hauteur de la fenetre, width qui recupere la largeur de la fenetre, 
 	couleur qui recupere la couleur choisi, liste qui récupère la variable qui représente la ligne tracé pour pouvoir la supprimer
@@ -92,13 +92,13 @@ Bibliothèques utilisées:
 	 explication des fonctions(ce qu elle font, les paramètres qu elles prennent, ce que ça retourne)
 	 Pour la partie de caluls de statistique il est nécessaire d'avoir ces 4 outils definit :
 
-*"moyenne(serie)"
+1)*"moyenne(serie)"*
 
 	C'est une fonction qui prends en entrée une liste et calculs la moyenne des flottant qu'elle contient.
 
 	Cette fonction renvoie donc un flottant.
 
-*"variance(serie)"
+2)*"variance(serie)"*
 
 	C'est une fonction qui prends en entrée une liste et en calculs la variance a l'aide de l'outils moyenne() en suivant 
 	cette équation:
@@ -107,7 +107,7 @@ Bibliothèques utilisées:
 
 Cette fonction renvoie donc un flottant.
 
-*"covariance(serieX, serieY)"
+3)*"covariance(serieX, serieY)"
 	
 	Prends en entrée deux listes (ici correspondant aux coordonnée x et y) pour a l'aide de l'outils variance() en calculer 
 	la covariance en suivant cette équation:
@@ -117,7 +117,7 @@ Cette fonction renvoie donc un flottant.
 Cette fonction renvoie donc un flottant.
 
 
-*"correlation(serieX, serieY)"
+4)*"correlation(serieX, serieY)"
 
 	Fonction qui prends en entrée deux listes pour en calculer, a l'aide de l'outils "variance()" le coefficient de correlation en 
 	suivant cette équation:
