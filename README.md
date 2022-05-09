@@ -1,23 +1,40 @@
 # Projet Statistiques descriptive à deux variables: droite de régression. 
 
 Informations: 
-    - Licence Mathématiques Informatique TD04 
-    - Groupe N ° 06
-    - Réalisé par: 
-        * Lilian SOMMY 22106064
+   
+ - Licence Mathématiques Informatique TD04 
+    
+ - Groupe N ° 06
+    
+ - Réalisé par: 
+        
+	* Lilian SOMMY 22106064
         * Mathis VISBECQ 22103193
         * Alann MONNIER-BLONDEAU 22102829
-    - URL Projet:
-        * https://github.com/uvsq22106064/Projet-stats
-    - Nom des fichiers:
-        | Fichier principale:
-            *
-        | Fichier csv:
-            * villes_virgules.csv
-        | Fichier texte:
-            * exemple.txt
-        | Fichier supplémentaire:
-            * Readme
+	
+ - URL Projet: https://github.com/uvsq22106064/Projet-stats
+  
+  
+  
+  
+- Nom des fichiers:
+ | Fichier principale:
+            
+	   *Stat.py
+       
+ | Fichier csv:
+            
+	    * villes_virgules.csv
+	    
+	    * anscombe.csv
+	    
+ | Fichier texte:
+           
+	   * exemple.txt
+	   
+ | Fichier supplémentaire:
+           
+	   * Readme
 
 
 Répartitionn travail:
