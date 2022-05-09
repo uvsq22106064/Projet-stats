@@ -311,7 +311,7 @@ def nouvelle_fenetre(message="Entrer un nombre: "):
     entry = tk.Entry(ecran_2, bg="white", fg="red")
     entry.grid()
     tk.Button(ecran_2, text="Valider", command=lambda:(valeur_entrer(entry.get()))).grid()
-    tk.Button(ecran_2, text="QUITTER", command=ecran_2.quit).grid()
+    tk.Button(ecran_2, text="Tracer points", command=ecran_2.quit).grid()
     
     ecran_2.mainloop()
 
