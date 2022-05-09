@@ -8,7 +8,7 @@ Informations:
         * Mathis VISBECQ 22103193
         * Alann MONNIER-BLONDEAU 22102829
     - URL Projet:
-        * https://github.com/alann22102829/projet_stat_A_L_M.git
+        * https://github.com/uvsq22106064/Projet-stats
     - Nom des fichiers:
         | Fichier principale:
             *
